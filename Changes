@@ -1,0 +1,62 @@
+2004-04-18:  Minor speed improvement.
+
+2004-03-24:  Fixed a bug.
+
+             New way of computing entropy in gain ratio for subvariables
+             under redundant structures: takes into account probability
+             estimates from multinomial estimation, which may differ
+             from a pure frequency based approach.
+
+             Made Ristad's "Natural Law of Succession" the current default
+             for multinomial estimation instead of the frequency based
+             approach.  Experiments will still have to be performed to
+             test its performance.
+
+2004-03-22:  Intermediate release to fix a bug.  Changed computation
+             of most frequent value again (dependent version).
+
+2004-03-06:  Fixed computation of most frequent value (dependent version).
+             Should be both statistically and computationally optimal now.
+
+             Updated copyright notice.
+
+             Updated OCamlMakefile.
+
+2003-11-26:  Fixed a bug concerning type handling.
+
+             Updated OCamlMakefile.
+
+2003-10-08:  Updated OCamlMakefile.
+
+2003-04-04:  Updated OCamlMakefile.
+
+2003-03-18:  Slightly improved performance reading in data.
+
+2003-02-28:  Fixed a bug in the computation of deep dependent entropy.
+             Fixed a bug in the computation of independent shallow entropy.
+
+2003-01-31:  Fixed a problem concerning rounding-errors during
+             calculation of gain ratios.
+
+2003-01-16:  Added flat representation of missing values.
+
+2003-01-15:  Improved efficiency of basic entropy calculation.
+
+             Changed implementation of flag "-with-min-gr" with random
+             models. The two options now work together without exhibiting
+             degenerative behaviour.
+
+2003-01-07:  Updated OCamlMakefile.
+
+2002-11-23:  Fixed a bug: C4.5-data without input variables now treated
+             correctly.
+
+2002-11-21:  Added time limit flag for generation of random models.
+
+2002-10-17:  Added include-path to contrib-directory so that the required
+             libraries can be found during compilation.
+
+             Fixed embarrassing misspelling of AFAID, eh, AIFAD in
+             documentation.
+
+2002-10-14:  Initial release.

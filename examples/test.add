@@ -1,0 +1,9 @@
+WienerSchnitzel Large -> High.
+WienerSchnitzel Small -> Low.
+Pizza (Large, True, Cheese Mozzarella) -> Very High.
+Pizza (Large, False, Cheese Gorgonzola) -> Very (Very High).
+Pizza (Small, True, Cheese Mozzarella) -> High.
+Pizza (Small, False, Cheese Gorgonzola) -> Very High.
+TapirSoup False -> Very Low.
+TapirSoup True -> Very Low.
+TapirSoup True -> Very High.

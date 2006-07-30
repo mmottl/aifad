@@ -1,0 +1,11 @@
+(No,  Menopause GE60) -> Recur.
+(No,  Menopause S60)  -> Recur.
+(No,  Menopause S60)  -> Recur.
+(No,  Menopause S60)  -> Recur.
+(No,  Menopause S60)  -> NotRecur.
+(No,  Not)            -> NotRecur.
+(No,  Not)            -> NotRecur.
+(No,  Not)            -> Recur.
+(Yes, Menopause GE60) -> NotRecur.
+(Yes, Menopause GE60) -> NotRecur.
+(Yes, Menopause S60)  -> NotRecur.
