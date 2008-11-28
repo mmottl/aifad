@@ -1,0 +1,15 @@
+MENHIR_ENABLED = true
+MENHIR_RAW_DEPEND = true
+MENHIR_FLAGS += --infer
+
+USE_OCAMLFIND = true
+OCAMLFLAGS += -thread
+OCAMLPACKS = cfg pcre res
+
+OCamlProgram(aifad, $(filter-out learn_nothreads, $(removesuffix $(ls *.ml))))
+
+.PHONY: clean
+clean:
+	rm -f *.cmi *.cmo *.cmx *.o *.annot
+
+.DEFAULT: aifad
