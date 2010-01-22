@@ -47,6 +47,12 @@ MODULES[] =
 
 OCamlProgram(aifad, $(MODULES))
 
+.PHONY: install uninstall
+
+install: aifad
+
+uninstall:
+
 .DEFAULT: aifad
 
 InstClean()
