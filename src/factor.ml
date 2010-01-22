@@ -39,14 +39,17 @@ type factor =
   | FactorVal of model
   | FactorLet of models * var_mods
 
-let not_match_mod = function MatchMod _ -> false | _ -> true
+let not_match_mod = function
+  | MatchMod _ -> false
+  | Val _ | Let _ -> true
+
 let make_var_free fdsum = VarFree fdsum
 
 let get_n_tpl models =
   match models.(0) with
   | Val fdsums -> Array.length fdsums
   | Let (_, var_mods) -> Array.length var_mods
-  | _ -> assert false (* impossible *)
+  | MatchMod _ -> assert false (* impossible *)
 
 let get_cnstr_strct models tpl_ix subs_ar =
   match models.(0) with
@@ -64,7 +67,7 @@ let get_cnstr_strct models tpl_ix subs_ar =
           subs_ar.(0) <- Array.map make_var_free subs;
           cnstr, true
       | Var -> raise Exit)
-  | _ -> assert false (* impossible *)
+  | MatchMod _ -> assert false (* impossible *)
 
 let get_sub_cnstr_strct subs_ar tsubs =
   match tsubs.(0) with
@@ -79,11 +82,11 @@ let cpy_subs subs_ar model_ix last_cnstr = function
   | VarStrct (cnstr, subs) when cnstr = last_cnstr -> subs_ar.(model_ix) <- subs
   | VarFree (FDStrct (cnstr, subs)) when cnstr = last_cnstr ->
       subs_ar.(model_ix) <- Array.map make_var_free subs
-  | _ -> raise Exit
+  | VarStrct _ | VarFree (FDAtom _ | FDStrct _) | Var -> raise Exit
 
 let chk_atom last_cnstr = function
   | VarFree (FDAtom cnstr) when cnstr = last_cnstr -> ()
-  | _ -> raise Exit
+  | VarStrct _ | VarFree (FDAtom _ | FDStrct _) | Var -> raise Exit
 
 let rec factorize_subs n_models_1 same_ref n_sub_same_ref subs_ar last_cnstr =
   let tsubs = transpose_matrix subs_ar in
@@ -133,10 +136,10 @@ let factorize_no_match models =
                 (match fdsums.(tpl_ix) with
                 | FDStrct (cnstr, subs) when cnstr = last_cnstr ->
                     subs_ar.(model_ix) <- Array.map make_var_free subs
-                | _ -> raise Exit)
+                | FDAtom _ | FDStrct _ -> raise Exit)
             | Let (_, var_mods) ->
                 cpy_subs subs_ar model_ix last_cnstr var_mods.(tpl_ix)
-            | _ -> assert false (* impossible *)
+            | MatchMod _ -> assert false (* impossible *)
           done;
           factorize_subs n_models_1 same_ref n_sub_same_ref subs_ar last_cnstr)
         else (
@@ -145,7 +148,7 @@ let factorize_no_match models =
             | Val fdsums ->
                 if fdsum_cnstr fdsums.(tpl_ix) <> last_cnstr then raise Exit
             | Let (_, var_mods) -> chk_atom last_cnstr var_mods.(tpl_ix)
-            | _ -> assert false (* impossible *)
+            | MatchMod _ -> assert false (* impossible *)
           done;
           VarFree (FDAtom last_cnstr)) in
       factorized_ref := factorized :: !factorized_ref;
@@ -163,7 +166,7 @@ let factorize_no_match models =
       let fdsums =
         array_map_of_nlist sum_of_var_mod n_factorized !factorized_ref in
       FactorVal (Val fdsums)
-    else (
+    else
       let same = !same_ref in
       let n_vars = !n_vars_ref in
       let n_new_tpl = n_vars + n_sub_same in
@@ -175,7 +178,7 @@ let factorize_no_match models =
               | Right tsub ->
                   match tsub.(model_ix) with
                   | VarFree fdsum -> new_fdsums.(ix) <- fdsum
-                  | _ -> assert false (* impossible *) in
+                  | VarStrct _ | Var -> assert false (* impossible *) in
             list_iteri acti same;
             Val new_fdsums
         | Let (match_mod, var_mods) ->
@@ -186,10 +189,10 @@ let factorize_no_match models =
             list_iteri acti same;
             if array_forall is_var new_var_mods then MatchMod match_mod
             else Let (match_mod, new_var_mods)
-        | _ -> assert false (* impossible *) in
+        | MatchMod _ -> assert false (* impossible *) in
       let new_models = Array.mapi cnvi models in
       let n_new_var_mods = n_factorized + n_vars in
-      FactorLet (new_models, array_of_nlist n_new_var_mods !factorized_ref))
+      FactorLet (new_models, array_of_nlist n_new_var_mods !factorized_ref)
 
 let factorize_models models =
   if array_forall not_match_mod models then factorize_no_match models

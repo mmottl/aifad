@@ -70,7 +70,7 @@ let calc_model_bds_per_bit dfdsums cfspec cinit_tps model =
             Array.iter add_var subs;
             loop_mod tps new_bds sh_mod
         | FDAtom var_cnstr when var_cnstr = cnstr -> loop_mod tps new_bds sh_mod
-        | _ -> loop_mod tps new_bds def_mod)
+        | FDStrct _ | FDAtom _ -> loop_mod tps new_bds def_mod)
     | Split (var_ix, models) ->
         let cnstr =
           match Res.Array.get env var_ix with

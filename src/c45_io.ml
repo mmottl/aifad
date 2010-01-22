@@ -75,7 +75,7 @@ let read_c45_spec names =
               var_lst := (name, Array.of_list attrs) :: !var_lst;
               let pat = ["("; String.concat "|" attrs; "|\\?)"] in
               rev_pat_lst := String.concat "" pat :: !rev_pat_lst
-          | x -> assert false (* impossible *));
+          | _ -> assert false (* impossible *));
         let lix = String.length target_line - 1 in
         let target_line = String.sub target_line 0 lix in
         let target_attr_lst = split ~rex:comma_rex target_line in

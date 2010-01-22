@@ -69,7 +69,7 @@ let calc_pre_ispec_info defs =
           sprintf "rhs-type '%s' unknown in definition of '%s'" tp lhs in
         failwith err in
       match rhs with
-      | Prod pe -> Prod (iprod_of_prod fail_tp tp_htbl pe)
+      | Prod pe -> Prod (iprod_of_prod ~fail_tp ~tp_htbl pe)
       | Sums ss ->
           let fail_tag lhs tag =
             let err =
@@ -86,7 +86,7 @@ let calc_pre_ispec_info defs =
                 if Hashtbl.mem cnstr_htbl htbl_el then fail_tag lhs tag
                 else (
                   Hashtbl.add cnstr_htbl htbl_el n;
-                  IStrct (iprod_of_prod fail_tp tp_htbl pe)) in
+                  IStrct (iprod_of_prod ~fail_tp ~tp_htbl pe)) in
           Sums (Array.mapi cnv_sum ss) in
     Array.map cnv_def defs in
   tp_tbl, cnstr_tbl, tp_htbl, ispec
@@ -153,7 +153,7 @@ let calc_ispec_info live_gr dtp (tp_tbl, cnstr_tbl, _, ispec) =
     tp_cnv_tbl.(nt) <- the_nt;
     (match ispec.(nt) with
     | Sums sums -> cnstr_cnv_tbl.(nt) <- Array.make (Array.length sums) 0
-    | _ -> ());
+    | Prod _ -> ());
     next_nt in
   let n_nt = NTMap.fold coll_nts gr_dom 1 in
   let dtp_tbl = Array.make n_nt "" in
@@ -184,7 +184,7 @@ let calc_ispec_info live_gr dtp (tp_tbl, cnstr_tbl, _, ispec) =
               (match sums.(tag) with
               | IStrct pe ->
                   new_sums.(new_tag) <- IStrct (map_prod_el cnv_tp pe)
-              | _ -> ())
+              | IAtom -> ())
           | CProd, _ -> assert false in
         list_iteri act_tag rhs_lst;
         dispec.(new_nt) <- Sums new_sums in

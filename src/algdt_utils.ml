@@ -52,12 +52,12 @@ let empty_fspec = [|[|[||]|]|]
 let get_n_fdsums ispec fspec =
   match ispec.(init_tp) with
   | Prod _ -> Array.length fspec.(init_tp).(0)
-  | _ -> 1
+  | Sums _ -> 1
 
 let get_init_tps ispec fspec =
   match ispec.(init_tp) with
   | Prod _ -> fspec.(init_tp).(0)
-  | _ -> dummy_init_tps
+  | Sums _ -> dummy_init_tps
 
 (* XXX implementation dependent! *)
 (* let fdsum_cnstr = function FDAtom cnstr | FDStrct (cnstr, _) -> cnstr *)
@@ -128,7 +128,7 @@ let make_deco_dsum_cnv fspec ispec =
     | TpVal tp ->
         match ispec.(tp) with
         | Prod sub_prod_el -> cnv_prod_el_loop ix fdsums sub_prod_el
-        | Sums sums -> TpVal (cnv_fdsum tp fdsums.(ix)), ix + 1 in
+        | Sums _ -> TpVal (cnv_fdsum tp fdsums.(ix)), ix + 1 in
   cnv_fdsum, fun prod_els fdsums -> fst (cnv_prod_els prod_els 0 fdsums)
 
 
@@ -295,7 +295,7 @@ let split_with_sub_vars min_freq fspec vars var_ix =
           let cnstr = fdsum_cnstr sample in
           new_histo.(cnstr) <- new_histo.(cnstr) + 1
         done
-    | _ -> ()
+    | FDAtom _ | FDStrct _ -> ()
   done;
   split_vars
 
@@ -392,7 +392,7 @@ let split_cnstr_with_sub_vars fspec vars var_ix cnstr =
             let cnstr = fdsum_cnstr sample in
             new_histo.(cnstr) <- new_histo.(cnstr) + 1
           done
-      | _ ->
+      | FDAtom _ | FDStrct _ ->
           let other_sample_ix = !other_sample_ix_ref in
           other_sample_ix_ref := other_sample_ix + 1;
           for i = 0 to var_ix_1 do
@@ -430,7 +430,7 @@ let split_cnstr_with_sub_vars fspec vars var_ix cnstr =
             let cnstr = fdsum_cnstr sample in
             new_histo.(cnstr) <- new_histo.(cnstr) + 1
           done
-      | _ ->
+      | FDAtom _ | FDStrct _ ->
           let other_sample_ix = !other_sample_ix_ref in
           other_sample_ix_ref := other_sample_ix + 1;
           for i = 0 to var_ix_1 do
@@ -486,7 +486,8 @@ let shave_with_sub_vars fspec vars var_ix cnstr =
             let cnstr = fdsum_cnstr sample in
             new_histo.(cnstr) <- new_histo.(cnstr) + 1
           done
-      | _ -> failwith "shave_with_sub_vars: constructor not unique"
+      | FDAtom _ | FDStrct _ ->
+          failwith "shave_with_sub_vars: constructor not unique"
     done);
   new_vars
 
@@ -716,7 +717,7 @@ let calc_shave_info fspec vars =
                       let subcnstr = fdsum_cnstr sub in
                       subhisto.(subcnstr) <- subhisto.(subcnstr) + 1
                     done
-                | _ -> assert false (* impossible *)
+                | FDAtom _ -> assert false (* impossible *)
               done;
               let new_sh_info, n_sh_sub_vars =
                 loop_var (ShInfo ([], sub_vars)) 0 n_subs_1 in

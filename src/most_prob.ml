@@ -91,7 +91,7 @@ let calc_many_sub_vars fspec { samples = samples; tp = tp; histo = histo } =
           let sub_cnstr = fdsum_cnstr sub_sample in
           sub_histo.(sub_cnstr) <- sub_histo.(sub_cnstr) + 1
         done
-    | _ -> ()
+    | FDAtom _ -> ()
   done;
   many_sub_vars
 
@@ -183,7 +183,7 @@ let dep_most_prob_sums fspec vars =
     let irefs = Array.init n_total_samples make_zeros_ref in
     let act = dep_most_prob_sum fspec 1.0 irefs in
     let _ = Array.iter act vars in
-    let colli ix (best_ix, best_ratio as acc) (sh_ref, all_ref) =
+    let colli ix (_, best_ratio as acc) (sh_ref, all_ref) =
       let ratio = !sh_ref /. !all_ref in
       if ratio > best_ratio then ix, ratio
       else acc in

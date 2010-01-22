@@ -37,7 +37,7 @@ open Typing
 (* General utility functions on models *)
 
 let dummy_model = Val dummy_fdsums
-let is_var_free = function VarFree _ -> true | _ -> false
+let is_var_free = function VarFree _ -> true | VarStrct _ | Var -> false
 let is_var var_mod = var_mod = Var
 
 let rec count_vars_var_mod = function
@@ -53,7 +53,7 @@ let count_some ar = Array.fold_left coll_some 0 ar
 
 let sum_of_var_mod = function
   | VarFree sum_mod -> sum_mod
-  | _ -> failwith "Model_utils.sum_of_var_mod"
+  | VarStrct _ | Var -> failwith "Model_utils.sum_of_var_mod"
 
 let make_strct_var_mods cnstr var_mods =
   if array_forall is_var_free var_mods then
@@ -108,7 +108,7 @@ let apply_model model fdsums =
             Array.iter add_var subs;
             loop_mod sh_mod
         | FDAtom var_cnstr when var_cnstr = cnstr -> loop_mod sh_mod
-        | _ -> loop_mod def_mod)
+        | FDStrct _ | FDAtom _ -> loop_mod def_mod)
     | Split (var_ix, models) ->
         let cnstr =
           match Res.Array.get env var_ix with
@@ -158,7 +158,7 @@ let pp_model ppf t_prefix c_prefix dispec_info cispec_info model =
   end in
   let module Model_pp = Model_pp_impl.Make (DecoSpec) in
   let dmodel, ddpat = Deco.decorate_model model in
-  Model_pp.pp_dmodel std_formatter dmodel ddpat
+  Model_pp.pp_dmodel ppf dmodel ddpat
 
 
 (* Print human-readable model to stdout *)

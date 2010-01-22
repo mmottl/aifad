@@ -171,7 +171,7 @@ let pp_dmodel ppf dmodel ddpat =
     pp_print_string ppf " ->";
     (match dmodel with
     | DVal _ -> pp_print_space ppf ()
-    | _ -> pp_force_newline ppf ());
+    | DLet _ | DMatchMod _ -> pp_force_newline ppf ());
     pp_dmodel ppf dmodel
 
   (* Print match models *)

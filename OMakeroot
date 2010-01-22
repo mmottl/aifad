@@ -1,6 +1,6 @@
-open build/C
 open build/OCaml
-open build/LaTeX
+
+include $(STDROOT)
 
 DefineCommandVars()
 

@@ -83,7 +83,8 @@ let make_cnv_data
             let cnstr = find_cnstr tp cnstr_name in
             (match isums.(cnstr) with
             | IAtom -> store_node (FDAtom cnstr) ar_lst
-            | _ -> failwith "cnv_data_rhs: constructor has too few arguments")
+            | IStrct _ ->
+                failwith "cnv_data_rhs: constructor has too few arguments")
         | TpVal (DStrct (cnstr_name, next_dpe)) ->
             let cnstr = find_cnstr tp cnstr_name in
             match isums.(cnstr) with
@@ -93,7 +94,8 @@ let make_cnv_data
                 let new_node = FDStrct (cnstr, new_ar) in
                 let new_ar_lst = (0, new_ar) :: store_node new_node ar_lst in
                 cnv_data new_ar_lst next_pe next_dpe
-            | _ -> failwith "cnv_data_rhs: constructor has too many arguments"
+            | IAtom ->
+                failwith "cnv_data_rhs: constructor has too many arguments"
   and cnv_data ar_lst pe dpe =
     match pe, dpe with
     | TpVal tp, _ -> cnv_data_rhs ar_lst tp dpe

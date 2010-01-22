@@ -109,7 +109,7 @@ and deco_vprod_el var_tp_lst ix var_mods = function
   | TpVal tp ->
       match cispec.(tp) with
       | Prod sub_prod_el -> deco_vprod_el var_tp_lst ix var_mods sub_prod_el
-      | Sums sums ->
+      | Sums _ ->
           let dvar_mod, new_var_tp_lst =
             deco_var_mod var_tp_lst tp var_mods.(ix) in
           TpVal dvar_mod, new_var_tp_lst, ix + 1

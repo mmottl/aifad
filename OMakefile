@@ -1,1 +1,29 @@
+USE_OCAMLFIND = 1
+ABORT_ON_DEPENDENCY_ERRORS = true
+
+BYTE_ENABLED = true
+NATIVE_ENABLED = true
+OCAMLFLAGS = -dtypes -g -w A -warn-error A
+
+CLEANCMD = \
+  rm -f *.[oa] *.annot *.cm[ioxa] *.cmxa *.opt *.omc *.so
+
+.PHONY: clean
+clean:
+	$(CLEANCMD)
+
+
+open build/C
+open build/OCaml
+open build/LaTeX
+
+DefineCommandVars()
+
+OCAML_SUFFIXES = .cmi .cmo .cmx .o
+
+InstClean() =
+  .PHONY: clean
+  clean:
+	  $(CLEANCMD)
+
 .SUBDIRS: src

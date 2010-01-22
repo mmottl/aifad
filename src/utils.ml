@@ -53,7 +53,7 @@ let rec one_list_rev_loop acc = function
 
 let one_list_rev = function
   | OneCons (el, one_lst) -> one_list_rev_loop (OneEl el) one_lst
-  | one_lst -> one_lst
+  | OneEl _ as one_lst -> one_lst
 
 let rec one_list_fold_left f acc = function
   | OneEl el -> f acc el
