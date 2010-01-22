@@ -52,4 +52,4 @@ OCamlProgram(aifad, $(MODULES))
 InstClean()
 
 clean:
-	rm -f aifad
+	rm -f aifad algdt_lexer.ml algdt_parser_y.ml algdt_parser_y.mli
