@@ -1,15 +1,13 @@
-.PHONY: all
-all:	aifad
-	@cd src && $(MAKE) byte-code
+.PHONY: all clean install uninstall
 
-.PHONY: opt
-opt:	aifad
-	@cd src && $(MAKE) native-code
+all:
+	omake
 
-aifad:
-	ln -sf src/aifad
-
-.PHONY:	clean
 clean:
-	@cd src && $(MAKE) clean
-	rm -f aifad
+	omake clean
+
+install:
+	cd lib && omake install
+
+uninstall:
+	cd lib && omake uninstall
