@@ -1,13 +1,7 @@
-.PHONY: all clean install uninstall
+.PHONY: all clean
 
 all:
 	omake
 
 clean:
 	omake clean
-
-install:
-	cd lib && omake install
-
-uninstall:
-	cd lib && omake uninstall
