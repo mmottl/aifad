@@ -64,8 +64,7 @@ let store_node node = function
       else (i', ar) :: rest
   | [] -> assert false
 
-let make_cnv_data
-    { cnstr_htbl = cnstr_htbl; ispec = ispec; tp_tbl = tp_tbl } fspec =
+let make_cnv_data { cnstr_htbl; ispec; tp_tbl; _ } fspec =
   let find_cnstr tp cnstr =
     try Hashtbl.find cnstr_htbl (tp, cnstr)
     with Not_found ->

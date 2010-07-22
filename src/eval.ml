@@ -88,8 +88,8 @@ let eval cispec_info eval_name =
 
 (* Evaluate C4.5-data *)
 
-let eval_c45 { cnstr_htbl = cnstr_htbl; ispec = cispec } eval_name =
+let eval_c45 { cnstr_htbl; ispec; _ } eval_name =
   do_open_in eval_name (fun eval_ic ->
   let read_eval () = C45_io.read_rhs eval_ic cnstr_htbl in
   let read () = C45_io.read_rhs stdin cnstr_htbl in
-  report (flatten_ispec cispec) read_eval read)
+  report (flatten_ispec ispec) read_eval read)

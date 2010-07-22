@@ -42,7 +42,8 @@ open Typing
 (* Apply model to data *)
 
 let handle_model pred_oc = function
-  | `Model (dispec_info, { ispec = cispec; cnstr_tbl = ccnstr_tbl }, model) ->
+  | `Model (
+        dispec_info, { ispec = cispec; cnstr_tbl = ccnstr_tbl; _ }, model) ->
       let dispec = dispec_info.ispec in
       let dfspec, _ = flatten_ispec dispec_info.ispec in
       let cfspec, _ = flatten_ispec cispec in

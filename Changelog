@@ -1,3 +1,5 @@
+2010-07-21:  Upgraded to OCaml 3.12.
+
 2006-11-22:  Updated OCamlMakefile.
 
 2004-04-18:  Minor speed improvement.

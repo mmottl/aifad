@@ -47,8 +47,8 @@ let rand_deco_data_gen ispec =
   loop init_tp
 
 let write_rand_samples ppf dispec_info cispec_info n with_target =
-  let { ispec = dispec; cnstr_tbl = dcnstr_tbl } = dispec_info in
-  let { ispec = cispec; cnstr_tbl = ccnstr_tbl } = cispec_info in
+  let { ispec = dispec; cnstr_tbl = dcnstr_tbl; _ } = dispec_info in
+  let { ispec = cispec; cnstr_tbl = ccnstr_tbl; _ } = cispec_info in
   let module IData2PP =
     Algdt_pp.Make_IData2
       (struct let cnstr_tbl = dcnstr_tbl end)

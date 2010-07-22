@@ -262,7 +262,7 @@ let calc_vars n_samples n_vars dcnstr_tbl target_attrs rows =
       let sample_ix = n_samples_1 - ix in
       csamples.(sample_ix) <- FDAtom ccnstr;
       chisto.(ccnstr) <- chisto.(ccnstr) + 1;
-      let acti var_ix { samples = dsamples; histo = dhisto } =
+      let acti var_ix { samples = dsamples; histo = dhisto; _ } =
         let dcnstr = sample.(var_ix) in
         dhisto.(dcnstr) <- dhisto.(dcnstr) + 1;
         dsamples.(sample_ix) <- FDAtom dcnstr in
@@ -272,9 +272,9 @@ let calc_vars n_samples n_vars dcnstr_tbl target_attrs rows =
 
 let read_c45_data (tp_names, target_attrs, pat, _ as c45_spec) mv ic =
   let rex = regexp ~flags pat in
-  let { cnstr_tbl = dcnstr_tbl; cnstr_htbl = dcnstr_htbl; } as dispec_info =
+  let { cnstr_tbl = dcnstr_tbl; cnstr_htbl = dcnstr_htbl; _ } as dispec_info =
     calc_dispec_info mv c45_spec in
-  let { cnstr_htbl = ccnstr_htbl; } as cispec_info =
+  let { cnstr_htbl = ccnstr_htbl; _ } as cispec_info =
     calc_cispec_info c45_spec in
 
   let n_lines_ref = ref 1 in
@@ -333,7 +333,7 @@ let read_c45_data (tp_names, target_attrs, pat, _ as c45_spec) mv ic =
 
       let n_samples = !n_samples_ref in
       let n_samples_1 = n_samples - 1 in
-      let { samples = dsamples; histo = dhisto; } as dvar =
+      let { samples = dsamples; histo = dhisto; _ } as dvar =
         {
           tp = n_vars + 1;
           samples = Array.make n_samples dummy_fdsum;  (* dummy_fdsum = MV! *)
@@ -428,7 +428,7 @@ let read_c45_data (tp_names, target_attrs, pat, _ as c45_spec) mv ic =
           let sample_ix = n_samples_1 - ix in
           csamples.(sample_ix) <- FDAtom ccnstr;
           chisto.(ccnstr) <- chisto.(ccnstr) + 1;
-          let acti var_ix { samples = dsamples; histo = dhisto } =
+          let acti var_ix { samples = dsamples; histo = dhisto; _ } =
             let fdsum = sample.(var_ix) in
             let dcnstr = fdsum_cnstr fdsum in
             dhisto.(dcnstr) <- dhisto.(dcnstr) + 1;

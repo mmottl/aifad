@@ -80,8 +80,8 @@ let learn_many dfspec dvars cfspec cvars cinit_tps model rand_model =
 
 let learn spec =
   let
-    { ispec = dispec } as dispec_info,
-    ({ ispec = cispec } as cispec_info) =
+    { ispec = dispec; _ } as dispec_info,
+    ({ ispec = cispec; _ } as cispec_info) =
       do_open_in spec (fun sp_ic -> read_spec (Lexing.from_channel sp_ic)) in
 
   let dfspec, dinit_tps = flatten_ispec dispec in

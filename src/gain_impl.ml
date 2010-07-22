@@ -46,7 +46,7 @@ let calc_dom_entropy dvar dom_ix =
         dentropy +. calc_unique_entropy (Array.length dfspec.(tp)) n_samples in
       one_list_fold_left coll_dom_entropy dentropy sh_chain
 
-let split_entropy ({ histo = dhisto; samples = dsamples } as dvar) cvars =
+let split_entropy ({ histo = dhisto; samples = dsamples; _ } as dvar) cvars =
   let f_samples = float (Array.length dsamples) in
   let colli dcnstr e split_info =
     let split_e = calc_split_info_entropy cfspec split_info in

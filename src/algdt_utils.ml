@@ -136,9 +136,9 @@ let make_deco_dsum_cnv fspec ispec =
 
 let make_histo var = Array.make (Array.length var.histo) 0
 
-let calc_cntg_tbls { histo = dhisto; samples = dsamples } cvars =
+let calc_cntg_tbls { histo; samples; _ } cvars =
   let make_cntg_tbl _ = Array.map make_histo cvars in
-  let cntg_tbls = Array.init (Array.length dhisto) make_cntg_tbl in
+  let cntg_tbls = Array.init (Array.length histo) make_cntg_tbl in
   let fill_cntg_tbls sample_ix dsample =
     let dcnstr = fdsum_cnstr dsample in
     let cntg_tbl = cntg_tbls.(dcnstr) in
@@ -147,7 +147,7 @@ let calc_cntg_tbls { histo = dhisto; samples = dsamples } cvars =
       let ccnstr_cnts = cntg_tbl.(ix) in
       ccnstr_cnts.(ccnstr) <- ccnstr_cnts.(ccnstr) + 1 in
     Array.iteri cnt_var cvars in
-  Array.iteri fill_cntg_tbls dsamples;
+  Array.iteri fill_cntg_tbls samples;
   cntg_tbls
 
 let sample_histo fspec tp samples =
@@ -166,9 +166,9 @@ let make_vars fspec tps many_samples =
 
 
 (* Split variables on some given variable without adding subvariables. *)
-let split_vars { histo = histo; samples = samples } fspec vars =
+let split_vars { histo; samples; _ } fspec vars =
   let cnv_histo freq =
-    let cnv_vars { tp = tp } =
+    let cnv_vars { tp; _ } =
       {
         samples = Array.make freq dummy_fdsum;
         tp = tp;
@@ -255,14 +255,14 @@ let split_with_sub_vars min_freq fspec vars var_ix =
         split_ixs.(split_cnstr) <- new_sample_ix + 1;
         let new_vars = split_vars.(split_cnstr) in
         for i = 0 to var_ix_1 do
-          let { histo = new_histo } as new_var = new_vars.(i) in
+          let { histo = new_histo; _ } as new_var = new_vars.(i) in
           let sample = vars.(i).samples.(sample_ix) in
           new_var.samples.(new_sample_ix) <- sample;
           let cnstr = fdsum_cnstr sample in
           new_histo.(cnstr) <- new_histo.(cnstr) + 1
         done;
         for i = var_ix1 to n_vars_1 do
-          let { histo = new_histo } as new_var = new_vars.(i - 1) in
+          let { histo = new_histo; _ } as new_var = new_vars.(i - 1) in
           let sample = vars.(i).samples.(sample_ix) in
           new_var.samples.(new_sample_ix) <- sample;
           let cnstr = fdsum_cnstr sample in
@@ -274,7 +274,7 @@ let split_with_sub_vars min_freq fspec vars var_ix =
         let new_vars = split_vars.(split_cnstr) in
         let n_subs = Array.length subs in
         for i = 0 to var_ix_1 do
-          let { histo = new_histo } as new_var = new_vars.(i) in
+          let { histo = new_histo; _ } as new_var = new_vars.(i) in
           let sample = vars.(i).samples.(sample_ix) in
           new_var.samples.(new_sample_ix) <- sample;
           let cnstr = fdsum_cnstr sample in
@@ -282,14 +282,14 @@ let split_with_sub_vars min_freq fspec vars var_ix =
         done;
         let n_subs_1 = n_subs - 1 in
         for i = 0 to n_subs_1 do
-          let { histo = new_histo } as new_var = new_vars.(var_ix + i) in
+          let { histo = new_histo; _ } as new_var = new_vars.(var_ix + i) in
           let sample = subs.(i) in
           new_var.samples.(new_sample_ix) <- sample;
           let cnstr = fdsum_cnstr sample in
           new_histo.(cnstr) <- new_histo.(cnstr) + 1
         done;
         for i = var_ix1 to n_vars_1 do
-          let { histo = new_histo } as new_var = new_vars.(i + n_subs_1) in
+          let { histo = new_histo; _ } as new_var = new_vars.(i + n_subs_1) in
           let sample = vars.(i).samples.(sample_ix) in
           new_var.samples.(new_sample_ix) <- sample;
           let cnstr = fdsum_cnstr sample in
@@ -306,7 +306,7 @@ let split_with_sub_vars min_freq fspec vars var_ix =
 
 let split_cnstr_with_sub_vars fspec vars var_ix cnstr =
   let n_vars_1 = Array.length vars - 1 in
-  let { samples = samples; tp = tp; histo = histo } = vars.(var_ix) in
+  let { samples; tp; histo } = vars.(var_ix) in
   let n_samples = Array.length samples in
   let var_ix1 = var_ix + 1 in
   let var_ix_1 = var_ix - 1 in
@@ -320,7 +320,7 @@ let split_cnstr_with_sub_vars fspec vars var_ix cnstr =
   let other_vars = Array.make n_new_vars dummy_var in
 
   for i = 0 to var_ix_1 do
-    let { tp = cur_tp; histo = cur_histo } = vars.(i) in
+    let { tp = cur_tp; histo = cur_histo; _ } = vars.(i) in
     let n_cur_histo = Array.length cur_histo in
     new_vars.(i) <-
       {
@@ -337,7 +337,7 @@ let split_cnstr_with_sub_vars fspec vars var_ix cnstr =
   done;
   let n_subs_1 = n_subs - 1 in
   for i = var_ix1 to n_vars_1 do
-    let { tp = cur_tp; histo = cur_histo } = vars.(i) in
+    let { tp = cur_tp; histo = cur_histo; _ } = vars.(i) in
     let n_cur_histo = Array.length cur_histo in
     new_vars.(i + n_subs_1) <-
       {
@@ -362,7 +362,7 @@ let split_cnstr_with_sub_vars fspec vars var_ix cnstr =
       new_vars.(var_ix + i) <-
         {
           samples = Array.make freq dummy_fdsum;
-          tp = tp;
+          tp;
           histo = Array.make (Array.length fspec.(tp)) 0;
         }
     done;
@@ -372,21 +372,21 @@ let split_cnstr_with_sub_vars fspec vars var_ix cnstr =
           let new_sample_ix = !new_sample_ix_ref in
           new_sample_ix_ref := new_sample_ix + 1;
           for i = 0 to var_ix_1 do
-            let { histo = new_histo } as new_var = new_vars.(i) in
+            let { histo = new_histo; _ } as new_var = new_vars.(i) in
             let sample = vars.(i).samples.(sample_ix) in
             new_var.samples.(new_sample_ix) <- sample;
             let cnstr = fdsum_cnstr sample in
             new_histo.(cnstr) <- new_histo.(cnstr) + 1
           done;
           for i = 0 to n_subs_1 do
-            let { histo = new_histo } as new_var = new_vars.(var_ix + i) in
+            let { histo = new_histo; _ } as new_var = new_vars.(var_ix + i) in
             let sample = subs.(i) in
             new_var.samples.(new_sample_ix) <- sample;
             let cnstr = fdsum_cnstr sample in
             new_histo.(cnstr) <- new_histo.(cnstr) + 1
           done;
           for i = var_ix1 to n_vars_1 do
-            let { histo = new_histo } as new_var = new_vars.(i + n_subs_1) in
+            let { histo = new_histo; _ } as new_var = new_vars.(i + n_subs_1) in
             let sample = vars.(i).samples.(sample_ix) in
             new_var.samples.(new_sample_ix) <- sample;
             let cnstr = fdsum_cnstr sample in
@@ -396,14 +396,14 @@ let split_cnstr_with_sub_vars fspec vars var_ix cnstr =
           let other_sample_ix = !other_sample_ix_ref in
           other_sample_ix_ref := other_sample_ix + 1;
           for i = 0 to var_ix_1 do
-            let { histo = other_histo } as other_var = other_vars.(i) in
+            let { histo = other_histo; _ } as other_var = other_vars.(i) in
             let sample = vars.(i).samples.(sample_ix) in
             other_var.samples.(other_sample_ix) <- sample;
             let cnstr = fdsum_cnstr sample in
             other_histo.(cnstr) <- other_histo.(cnstr) + 1
           done;
           for i = var_ix1 to n_vars_1 do
-            let { histo = other_histo } as other_var = other_vars.(i - 1) in
+            let { histo = other_histo; _ } as other_var = other_vars.(i - 1) in
             let sample = vars.(i).samples.(sample_ix) in
             other_var.samples.(other_sample_ix) <- sample;
             let cnstr = fdsum_cnstr sample in
@@ -417,14 +417,14 @@ let split_cnstr_with_sub_vars fspec vars var_ix cnstr =
           let new_sample_ix = !new_sample_ix_ref in
           new_sample_ix_ref := new_sample_ix + 1;
           for i = 0 to var_ix_1 do
-            let { histo = new_histo } as new_var = new_vars.(i) in
+            let { histo = new_histo; _ } as new_var = new_vars.(i) in
             let sample = vars.(i).samples.(sample_ix) in
             new_var.samples.(new_sample_ix) <- sample;
             let cnstr = fdsum_cnstr sample in
             new_histo.(cnstr) <- new_histo.(cnstr) + 1
           done;
           for i = var_ix1 to n_vars_1 do
-            let { histo = new_histo } as new_var = new_vars.(i - 1) in
+            let { histo = new_histo; _ } as new_var = new_vars.(i - 1) in
             let sample = vars.(i).samples.(sample_ix) in
             new_var.samples.(new_sample_ix) <- sample;
             let cnstr = fdsum_cnstr sample in
@@ -434,14 +434,14 @@ let split_cnstr_with_sub_vars fspec vars var_ix cnstr =
           let other_sample_ix = !other_sample_ix_ref in
           other_sample_ix_ref := other_sample_ix + 1;
           for i = 0 to var_ix_1 do
-            let { histo = other_histo } as other_var = other_vars.(i) in
+            let { histo = other_histo; _ } as other_var = other_vars.(i) in
             let sample = vars.(i).samples.(sample_ix) in
             other_var.samples.(other_sample_ix) <- sample;
             let cnstr = fdsum_cnstr sample in
             other_histo.(cnstr) <- other_histo.(cnstr) + 1
           done;
           for i = var_ix1 to n_vars_1 do
-            let { histo = other_histo } as other_var = other_vars.(i - 1) in
+            let { histo = other_histo; _ } as other_var = other_vars.(i - 1) in
             let sample = vars.(i).samples.(sample_ix) in
             other_var.samples.(other_sample_ix) <- sample;
             let cnstr = fdsum_cnstr sample in
@@ -472,7 +472,7 @@ let shave_with_sub_vars fspec vars var_ix cnstr =
       new_vars.(var_ix + i) <-
         {
           samples = Array.make freq dummy_fdsum;
-          tp = tp;
+          tp;
           histo = Array.make (Array.length fspec.(tp)) 0;
         }
     done;
@@ -480,7 +480,7 @@ let shave_with_sub_vars fspec vars var_ix cnstr =
       match samples.(sample_ix) with
       | FDStrct (split_cnstr, subs) when split_cnstr = cnstr ->
           for i = 0 to n_subs_1 do
-            let { histo = new_histo } as new_var = new_vars.(var_ix + i) in
+            let { histo = new_histo; _ } as new_var = new_vars.(var_ix + i) in
             let sample = subs.(i) in
             new_var.samples.(sample_ix) <- sample;
             let cnstr = fdsum_cnstr sample in
@@ -586,14 +586,14 @@ let maybe_split_with_sub_vars fspec vars var_ix maybes =
         let none_sample_ix = !none_ix_ref in
         none_ix_ref := none_sample_ix + 1;
         for i = 0 to var_ix_1 do
-          let { histo = none_histo } as none_var = none_vars.(i) in
+          let { histo = none_histo; _ } as none_var = none_vars.(i) in
           let sample = vars.(i).samples.(sample_ix) in
           none_var.samples.(none_sample_ix) <- sample;
           let cnstr = fdsum_cnstr sample in
           none_histo.(cnstr) <- none_histo.(cnstr) + 1
         done;
         for i = var_ix1 to n_vars_1 do
-          let { histo = none_histo } as none_var = none_vars.(i - 1) in
+          let { histo = none_histo; _ } as none_var = none_vars.(i - 1) in
           let sample = vars.(i).samples.(sample_ix) in
           none_var.samples.(none_sample_ix) <- sample;
           let cnstr = fdsum_cnstr sample in
@@ -604,14 +604,14 @@ let maybe_split_with_sub_vars fspec vars var_ix maybes =
         split_ixs.(split_cnstr) <- new_sample_ix + 1;
         let new_vars = split_vars.(split_cnstr) in
         for i = 0 to var_ix_1 do
-          let { histo = new_histo } as new_var = new_vars.(i) in
+          let { histo = new_histo; _ } as new_var = new_vars.(i) in
           let sample = vars.(i).samples.(sample_ix) in
           new_var.samples.(new_sample_ix) <- sample;
           let cnstr = fdsum_cnstr sample in
           new_histo.(cnstr) <- new_histo.(cnstr) + 1
         done;
         for i = var_ix1 to n_vars_1 do
-          let { histo = new_histo } as new_var = new_vars.(i - 1) in
+          let { histo = new_histo; _ } as new_var = new_vars.(i - 1) in
           let sample = vars.(i).samples.(sample_ix) in
           new_var.samples.(new_sample_ix) <- sample;
           let cnstr = fdsum_cnstr sample in
@@ -623,7 +623,7 @@ let maybe_split_with_sub_vars fspec vars var_ix maybes =
         let new_vars = split_vars.(split_cnstr) in
         let n_subs = Array.length subs in
         for i = 0 to var_ix_1 do
-          let { histo = new_histo } as new_var = new_vars.(i) in
+          let { histo = new_histo; _ } as new_var = new_vars.(i) in
           let sample = vars.(i).samples.(sample_ix) in
           new_var.samples.(new_sample_ix) <- sample;
           let cnstr = fdsum_cnstr sample in
@@ -631,14 +631,14 @@ let maybe_split_with_sub_vars fspec vars var_ix maybes =
         done;
         let n_subs_1 = n_subs - 1 in
         for i = 0 to n_subs_1 do
-          let { histo = new_histo } as new_var = new_vars.(var_ix + i) in
+          let { histo = new_histo; _ } as new_var = new_vars.(var_ix + i) in
           let sample = subs.(i) in
           new_var.samples.(new_sample_ix) <- sample;
           let cnstr = fdsum_cnstr sample in
           new_histo.(cnstr) <- new_histo.(cnstr) + 1
         done;
         for i = var_ix1 to n_vars_1 do
-          let { histo = new_histo } as new_var = new_vars.(i + n_subs_1) in
+          let { histo = new_histo; _ } as new_var = new_vars.(i + n_subs_1) in
           let sample = vars.(i).samples.(sample_ix) in
           new_var.samples.(new_sample_ix) <- sample;
           let cnstr = fdsum_cnstr sample in
