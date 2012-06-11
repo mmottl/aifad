@@ -29,7 +29,6 @@
 open Format
 
 open Utils
-open Algdt_utils
 open Model_utils
 open Model_data
 open C45_io

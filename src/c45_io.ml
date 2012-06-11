@@ -43,8 +43,6 @@ let flags = [`DOTALL]  (* makes matching faster *)
 let comma_rex = regexp ~flags "\\s*(?:,|\\.)\\s*"
 let def_rex = regexp ~flags "^(\\w+):\\s*(\\w+(?:\\s*,\\s*\\w+)*)\\s*\\.\\s*$"
 
-let cmp_inv_str_len s1 s2 = compare (String.length s2) (String.length s1)
-
 let read_c45_spec names =
   let failwith msg = failwith (sprintf "read_c45_spec:%s: %s" names msg) in
   let var_set = ref StrSet.empty in
@@ -262,7 +260,7 @@ let calc_vars n_samples n_vars dcnstr_tbl target_attrs rows =
       let sample_ix = n_samples_1 - ix in
       csamples.(sample_ix) <- FDAtom ccnstr;
       chisto.(ccnstr) <- chisto.(ccnstr) + 1;
-      let acti var_ix { samples = dsamples; histo = dhisto; _ } =
+      let acti var_ix { samples = dsamples; histo = dhisto } =
         let dcnstr = sample.(var_ix) in
         dhisto.(dcnstr) <- dhisto.(dcnstr) + 1;
         dsamples.(sample_ix) <- FDAtom dcnstr in
@@ -272,9 +270,9 @@ let calc_vars n_samples n_vars dcnstr_tbl target_attrs rows =
 
 let read_c45_data (tp_names, target_attrs, pat, _ as c45_spec) mv ic =
   let rex = regexp ~flags pat in
-  let { cnstr_tbl = dcnstr_tbl; cnstr_htbl = dcnstr_htbl; _ } as dispec_info =
+  let { cnstr_tbl = dcnstr_tbl; cnstr_htbl = dcnstr_htbl } as dispec_info =
     calc_dispec_info mv c45_spec in
-  let { cnstr_htbl = ccnstr_htbl; _ } as cispec_info =
+  let { cnstr_htbl = ccnstr_htbl } as cispec_info =
     calc_cispec_info c45_spec in
 
   let n_lines_ref = ref 1 in
@@ -333,7 +331,7 @@ let read_c45_data (tp_names, target_attrs, pat, _ as c45_spec) mv ic =
 
       let n_samples = !n_samples_ref in
       let n_samples_1 = n_samples - 1 in
-      let { samples = dsamples; histo = dhisto; _ } as dvar =
+      let { samples = dsamples; histo = dhisto } as dvar =
         {
           tp = n_vars + 1;
           samples = Array.make n_samples dummy_fdsum;  (* dummy_fdsum = MV! *)
@@ -428,7 +426,7 @@ let read_c45_data (tp_names, target_attrs, pat, _ as c45_spec) mv ic =
           let sample_ix = n_samples_1 - ix in
           csamples.(sample_ix) <- FDAtom ccnstr;
           chisto.(ccnstr) <- chisto.(ccnstr) + 1;
-          let acti var_ix { samples = dsamples; histo = dhisto; _ } =
+          let acti var_ix { samples = dsamples; histo = dhisto } =
             let fdsum = sample.(var_ix) in
             let dcnstr = fdsum_cnstr fdsum in
             dhisto.(dcnstr) <- dhisto.(dcnstr) + 1;

@@ -30,7 +30,6 @@ open Format
 
 open Utils
 open Algdt_types
-open Algdt_utils
 open Typing
 open Info_utils
 
@@ -88,7 +87,7 @@ let eval cispec_info eval_name =
 
 (* Evaluate C4.5-data *)
 
-let eval_c45 { cnstr_htbl; ispec; _ } eval_name =
+let eval_c45 { cnstr_htbl; ispec } eval_name =
   do_open_in eval_name (fun eval_ic ->
   let read_eval () = C45_io.read_rhs eval_ic cnstr_htbl in
   let read () = C45_io.read_rhs stdin cnstr_htbl in

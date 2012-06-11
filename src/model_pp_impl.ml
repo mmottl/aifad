@@ -42,8 +42,8 @@ open Spec
 
 (* Conversion tables from immediate to string encodings *)
 
-let { tp_tbl = dtp_tbl; cnstr_tbl = dcnstr_tbl; _ } = dispec_info
-let { tp_tbl = ctp_tbl; cnstr_tbl = ccnstr_tbl; _ } = cispec_info
+let { tp_tbl = dtp_tbl; cnstr_tbl = dcnstr_tbl } = dispec_info
+let { tp_tbl = ctp_tbl; cnstr_tbl = ccnstr_tbl } = cispec_info
 
 (* Specialized pretty-printer *)
 

@@ -84,7 +84,7 @@ let calc_many_sub_vars fspec { samples = samples; tp = tp; histo = histo } =
         sub_ixs.(cnstr) <- sub_ix + 1;
         let sub_vars = many_sub_vars.(cnstr) in
         for sub_var_ix = 0 to Array.length subs - 1 do
-          let { samples = sub_samples; histo = sub_histo; _ } =
+          let { samples = sub_samples; histo = sub_histo } =
             sub_vars.(sub_var_ix) in
           let sub_sample = subs.(sub_var_ix) in
           sub_samples.(sub_ix) <- sub_sample;
@@ -161,7 +161,7 @@ let rec dep_most_prob_sum fspec p_all irefs
         many_sub_irefs.(cnstr).(sub_ix) <- iref;
         let sub_vars = many_sub_vars.(cnstr) in
         for sub_var_ix = 0 to Array.length subs - 1 do
-          let { samples = sub_samples; histo = sub_histo; _ } =
+          let { samples = sub_samples; histo = sub_histo } =
             sub_vars.(sub_var_ix) in
           let sub_sample = subs.(sub_var_ix) in
           sub_samples.(sub_ix) <- sub_sample;

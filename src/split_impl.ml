@@ -115,14 +115,14 @@ let split dom_ixs ix_cnt dvars cvars dvar_ix =
         split_ixs.(split_cnstr) <- new_sample_ix + 1;
         let new_dvars = split_dvars.(split_cnstr) in
         for i = 0 to dvar_ix - 1 do
-          let { histo = new_dhisto; _ } as new_dvar = new_dvars.(i) in
+          let { histo = new_dhisto } as new_dvar = new_dvars.(i) in
           let dsample = dvars.(i).samples.(sample_ix) in
           new_dvar.samples.(new_sample_ix) <- dsample;
           let dcnstr = fdsum_cnstr dsample in
           new_dhisto.(dcnstr) <- new_dhisto.(dcnstr) + 1
         done;
         for i = dvar_ix + 1 to n_dvars_1 do
-          let { histo = new_dhisto; _ } as new_dvar = new_dvars.(i - 1) in
+          let { histo = new_dhisto } as new_dvar = new_dvars.(i - 1) in
           let dsample = dvars.(i).samples.(sample_ix) in
           new_dvar.samples.(new_sample_ix) <- dsample;
           let dcnstr = fdsum_cnstr dsample in
@@ -130,7 +130,7 @@ let split dom_ixs ix_cnt dvars cvars dvar_ix =
         done;
         let new_cvars = split_cvars.(split_cnstr) in
         for i = 0 to n_cvars_1 do
-          let { histo = new_chisto; _ } as new_cvar = new_cvars.(i) in
+          let { histo = new_chisto } as new_cvar = new_cvars.(i) in
           let csample = cvars.(i).samples.(sample_ix) in
           new_cvar.samples.(new_sample_ix) <- csample;
           let ccnstr = fdsum_cnstr csample in
@@ -142,7 +142,7 @@ let split dom_ixs ix_cnt dvars cvars dvar_ix =
         let new_dvars = split_dvars.(split_cnstr) in
         let n_dsubs = Array.length subs in
         for i = 0 to dvar_ix - 1 do
-          let { histo = new_dhisto; _ } as new_dvar = new_dvars.(i) in
+          let { histo = new_dhisto } as new_dvar = new_dvars.(i) in
           let dsample = dvars.(i).samples.(sample_ix) in
           new_dvar.samples.(new_sample_ix) <- dsample;
           let dcnstr = fdsum_cnstr dsample in
@@ -150,14 +150,14 @@ let split dom_ixs ix_cnt dvars cvars dvar_ix =
         done;
         let n_dsubs_1 = n_dsubs - 1 in
         for i = 0 to n_dsubs_1 do
-          let { histo = new_dhisto; _ } as new_dvar = new_dvars.(dvar_ix + i) in
+          let { histo = new_dhisto } as new_dvar = new_dvars.(dvar_ix + i) in
           let dsample = subs.(i) in
           new_dvar.samples.(new_sample_ix) <- dsample;
           let dcnstr = fdsum_cnstr dsample in
           new_dhisto.(dcnstr) <- new_dhisto.(dcnstr) + 1
         done;
         for i = dvar_ix + 1 to n_dvars_1 do
-          let { histo = new_dhisto; _ } as new_dvar = new_dvars.(i + n_dsubs_1) in
+          let { histo = new_dhisto } as new_dvar = new_dvars.(i + n_dsubs_1) in
           let dsample = dvars.(i).samples.(sample_ix) in
           new_dvar.samples.(new_sample_ix) <- dsample;
           let dcnstr = fdsum_cnstr dsample in
@@ -165,7 +165,7 @@ let split dom_ixs ix_cnt dvars cvars dvar_ix =
         done;
         let new_cvars = split_cvars.(split_cnstr) in
         for i = 0 to n_cvars_1 do
-          let { histo = new_chisto; _ } as new_cvar = new_cvars.(i) in
+          let { histo = new_chisto } as new_cvar = new_cvars.(i) in
           let csample = cvars.(i).samples.(sample_ix) in
           new_cvar.samples.(new_sample_ix) <- csample;
           let ccnstr = fdsum_cnstr csample in

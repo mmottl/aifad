@@ -30,7 +30,6 @@ open Utils
 open Algdt_types
 open Algdt_utils
 open Model_utils
-open Info_utils
 open Complexity
 open Model_data
 open C45_io
@@ -62,8 +61,8 @@ let learn_many dfspec dvars cfspec cvars cinit_tps model rand_model =
 
 let learn spec =
   let
-    { ispec = dispec; _ } as dispec_info,
-    ({ ispec = cispec; _ } as cispec_info) =
+    { ispec = dispec } as dispec_info,
+    ({ ispec = cispec } as cispec_info) =
       do_open_in spec (fun sp_ic -> read_spec (Lexing.from_channel sp_ic)) in
 
   let dfspec, dinit_tps = flatten_ispec dispec in

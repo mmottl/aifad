@@ -47,20 +47,20 @@ let rand_deco_data_gen ispec =
   loop init_tp
 
 let write_rand_samples ppf dispec_info cispec_info n with_target =
-  let { ispec = dispec; cnstr_tbl = dcnstr_tbl; _ } = dispec_info in
-  let { ispec = cispec; cnstr_tbl = ccnstr_tbl; _ } = cispec_info in
+  let { ispec = dispec; cnstr_tbl = dcnstr_tbl } = dispec_info in
+  let { ispec = cispec; cnstr_tbl = ccnstr_tbl } = cispec_info in
   let module IData2PP =
     Algdt_pp.Make_IData2
       (struct let cnstr_tbl = dcnstr_tbl end)
       (struct let cnstr_tbl = ccnstr_tbl end) in
   if with_target then
-    for i = 1 to n do
+    for _i = 1 to n do
       IData2PP.pp_sample
         ppf (rand_deco_data_gen dispec, rand_deco_data_gen cispec);
       Format.pp_force_newline ppf ()
     done
   else
-    for i = 1 to n do
+    for _i = 1 to n do
       IData2PP.D.pp_data ppf (rand_deco_data_gen dispec);
       Format.pp_force_newline ppf ()
     done
@@ -77,7 +77,7 @@ let write_rand_c45_data_ignore oc dcnstr_tbl =
 let write_rand_c45_data_mprob p oc dcnstr_tbl =
   if Random.float 1.0 <= p then (
     output_string oc "?";
-    for tp = 2 to Array.length dcnstr_tbl - 2 do output_string oc ",?"; done)
+    for _tp = 2 to Array.length dcnstr_tbl - 2 do output_string oc ",?"; done)
   else (
     let dcnstrs1 = dcnstr_tbl.(1) in
     output_string oc dcnstrs1.(Random.int (Array.length dcnstrs1));
@@ -122,7 +122,7 @@ let write_rand_c45_samples oc dispec_info cispec_info n with_target mv p =
   let ccnstr_tbl = cispec_info.cnstr_tbl in
   if Array.length dcnstr_tbl <= 1 then
     if with_target then
-      for i = 1 to n do
+      for _i = 1 to n do
         write_rand_c45_target oc ccnstr_tbl;
         output_char oc '\n'
       done
@@ -130,50 +130,50 @@ let write_rand_c45_samples oc dispec_info cispec_info n with_target mv p =
   else
     match with_target, mv with
     | true, Ignore ->
-        for i = 1 to n do
+        for _i = 1 to n do
           write_rand_c45_data_ignore oc dcnstr_tbl;
           output_char oc ',';
           write_rand_c45_target oc ccnstr_tbl;
           output_char oc '\n'
         done
     | false, Ignore ->
-        for i = 1 to n do
+        for _i = 1 to n do
           write_rand_c45_data_ignore oc dcnstr_tbl;
           output_char oc '\n'
         done
     | true, MProb ->
-        for i = 1 to n do
+        for _i = 1 to n do
           write_rand_c45_data_mprob p oc dcnstr_tbl;
           output_char oc ',';
           write_rand_c45_target oc ccnstr_tbl;
           output_char oc '\n'
         done
     | false, MProb ->
-        for i = 1 to n do
+        for _i = 1 to n do
           write_rand_c45_data_mprob p oc dcnstr_tbl;
           output_char oc '\n';
         done
     | true, Flat ->
-        for i = 1 to n do
+        for _i = 1 to n do
           write_rand_c45_data_flat p oc dcnstr_tbl;
           output_char oc ',';
           write_rand_c45_target oc ccnstr_tbl;
           output_char oc '\n'
         done
     | false, Flat ->
-        for i = 1 to n do
+        for _i = 1 to n do
           write_rand_c45_data_flat p oc dcnstr_tbl;
           output_char oc '\n';
         done
     | true, LiftAll ->
-        for i = 1 to n do
+        for _i = 1 to n do
           write_rand_c45_data_lift_all p oc dcnstr_tbl;
           output_char oc ',';
           write_rand_c45_target oc ccnstr_tbl;
           output_char oc '\n'
         done
     | false, LiftAll ->
-        for i = 1 to n do
+        for _i = 1 to n do
           write_rand_c45_data_lift_all p oc dcnstr_tbl;
           output_char oc '\n';
         done

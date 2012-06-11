@@ -56,7 +56,7 @@ let rec var_entropy fspec { samples = samples; tp = tp; histo = histo } =
           split_ixs.(split_cnstr) <- new_sample_ix + 1;
           let new_vars = split_vars.(split_cnstr) in
           for i = 0 to Array.length new_vars - 1 do
-            let { histo = new_histo; _ } as new_var = new_vars.(i) in
+            let { histo = new_histo } as new_var = new_vars.(i) in
             let sample = subs.(i) in
             new_var.samples.(new_sample_ix) <- sample;
             let cnstr = fdsum_cnstr sample in

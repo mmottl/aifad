@@ -35,7 +35,6 @@ open Algdt_types
 open Algdt_utils
 open Algdt_pp
 open Model_data
-open C45_io
 open Data_io
 open Typing
 
@@ -43,7 +42,7 @@ open Typing
 
 let handle_model pred_oc = function
   | `Model (
-        dispec_info, { ispec = cispec; cnstr_tbl = ccnstr_tbl; _ }, model) ->
+        dispec_info, { ispec = cispec; cnstr_tbl = ccnstr_tbl }, model) ->
       let dispec = dispec_info.ispec in
       let dfspec, _ = flatten_ispec dispec_info.ispec in
       let cfspec, _ = flatten_ispec cispec in
