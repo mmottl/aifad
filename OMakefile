@@ -1,9 +1,9 @@
-USE_OCAMLFIND = 1
+USE_OCAMLFIND = true
 ABORT_ON_DEPENDENCY_ERRORS = true
 
 BYTE_ENABLED = true
 NATIVE_ENABLED = true
-OCAMLFLAGS = -dtypes -g -w Aer -warn-error A
+OCAMLFLAGS = -annot -g -w Aer -strict-sequence
 
 CLEANCMD = \
   rm -f *.[oa] *.annot *.cm[ioxa] *.cmxa *.opt *.omc *.so

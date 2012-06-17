@@ -2,11 +2,6 @@ MENHIR_ENABLED = true
 MENHIR_RAW_DEPEND = true
 MENHIR_FLAGS += --infer
 
-section
-  OCAMLFLAGS = -dtypes -g -w Ae -warn-error Ae
-  $(addsuffixes $(OCAML_SUFFIXES),  algdt_parser_y):
-
-USE_OCAMLFIND = true
 OCAMLFLAGS += -thread
 OCAMLPACKS = cfg pcre res
 
