@@ -1,0 +1,27 @@
+# OASIS_START
+# DO NOT EDIT (digest: a24238296c50b2a493ec227242939953)
+# Ignore VCS directories, you can use the same kind of rule outside 
+# OASIS_START/STOP if you want to exclude directories that contains 
+# useless stuff for the build process
+<**/.svn>: -traverse
+<**/.svn>: not_hygienic
+".bzr": -traverse
+".bzr": not_hygienic
+".hg": -traverse
+".hg": not_hygienic
+".git": -traverse
+".git": not_hygienic
+"_darcs": -traverse
+"_darcs": not_hygienic
+# Executable aifad
+<src/aifad.{native,byte}>: pkg_threads
+<src/aifad.{native,byte}>: pkg_res
+<src/aifad.{native,byte}>: pkg_pcre
+<src/aifad.{native,byte}>: pkg_cfg
+<src/*.ml{,i}>: pkg_threads
+<src/*.ml{,i}>: pkg_res
+<src/*.ml{,i}>: pkg_pcre
+<src/*.ml{,i}>: pkg_cfg
+# OASIS_STOP
+true: use_menhir
+<src/*.ml{,i}>: warn_A, warn_e, warn_r

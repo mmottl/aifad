@@ -1,95 +1,40 @@
-     
-                                        
-      AIFAD - Automated Induction of Functions over Algebraic Datatypes
-      *****************************************************************
-                 Copyright   (C)   2003-   Markus Mottl (1)  
-                 ============================================
-                      Vienna, 						16th	January, 2006 
-                      =================================
-  
-  
+(* OASIS_START *)
+(* DO NOT EDIT (digest: a4e732330ff19c20db081838e0cceed6) *)
+This is the INSTALL file for the aifad distribution.
 
-1  Requirements
-*=*=*=*=*=*=*=*
+This package uses OASIS to generate its build system. See section OASIS for
+full information. 
 
-  
-  The following tools and libraries are needed for compiling AIFAD:
-  
- 
- - GNU-make 
- - OCaml-3.06 (2) 
- - findlib (3) 
- - PCRE-OCaml (4) 
- - RES (5) 
- - CFG (6)
-  
-  In case you need to install any of the above, please follow the installation
-instructions distributed with these tools and libraries.
-  
-
-2  Compilation
-*=*=*=*=*=*=*=
-
-
-
-2.1  Customize OCamlMakefile
-============================
-  
-  If there is anything non-standard about your OCaml-installation, look at the
-default settings in `OCamlMakefile' and set them to the values that are valid
-on your system. You can do this also by setting environment variables instead
-of changing the Makefile. This is greatly simplified if you normally use
-`OCamlMakefile' and have already configured your shell environment in startup
-files appropriately.
-  
-
-2.2  Make
-=========
-  
-  Enter `make' in the top directory to compile to byte-code. If you want to
-compile to native-code instead, enter `make opt'.
-  
-
-2.3  Install
+Dependencies
 ============
-  
-  Just copy the resulting executable `aifad' whereever you want.
-  
 
-2.4  Documentation
-==================
-  
-  Please read the distributed `README.txt' for more details.
-  
+In order to compile this package, you will need:
+* ocaml (>= 4.00)
+* findlib
+* res
+* pcre
+* cfg
+* menhir
 
-3  Contact information
-*=*=*=*=*=*=*=*=*=*=*=
+Installing
+==========
 
-  
-  In the case of bugs, feature requests, contributions and similar, you can
-contact me here:
-  
-    markus.mottl@gmail.com
-  
-  Up-to-date information concerning this tool should be available here:
-  
-    http://www.ocaml.info/aifad
-  
-  Enjoy!!
---------------------------------------
-  
- 
- (1) http://www.ocaml.info/
- 
- (2) http://www.ocaml.org
- 
- (3) http://www.ocaml-programming.de/programming/download-caml.html
- 
- (4) http://www.ocaml.info/home/ocaml_sources.html#pcre-ocaml
- 
- (5) http://www.ocaml.info/home/ocaml_sources.html#RES
- 
- (6) http://www.ocaml.info/home/ocaml_sources.html#CFG
------------------------------------------------------------------------------
-  
-               This document was translated from LaTeX by HeVeA (7).
+1. Uncompress the source archive and go to the root of the package
+2. Run 'ocaml setup.ml -configure'
+3. Run 'ocaml setup.ml -build'
+4. Run 'ocaml setup.ml -install'
+
+Uninstalling
+============
+
+1. Go to the root of the package 
+2. Run 'ocaml setup.ml -uninstall'
+
+OASIS
+=====
+
+OASIS is a program that generates a setup.ml file using a simple '_oasis'
+configuration file. The generated setup only depends on the standard OCaml
+installation: no additional library is required.
+
+(* OASIS_STOP *)

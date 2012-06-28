@@ -1,0 +1,19 @@
+OASISFormat:      0.3
+OCamlVersion:     >= 4.00
+Name:             aifad
+Version:          1.1.2
+Synopsis:         AIFAD - Automated Induction of Functions over Algebraic Datatypes
+Description:      AIFAD is a machine learning tool that generalizes decision tree learning to algebraic datatypes.
+Authors:          Markus Mottl <markus.mottl@gmail.com>
+License:          GPL-3+
+Plugins:          META (0.3), StdFiles (0.3), DevFiles (0.3)
+Homepage:         http://www.bitbucket.org/mmottl/aifad
+XStdFilesREADME:  false
+XStdFilesAUTHORS: false
+
+Executable aifad
+  Path:           src
+  MainIs:         aifad.ml
+  BuildTools:     ocamlbuild, menhir
+  BuildDepends:   threads, res, pcre, cfg
+  CompiledObject: best
