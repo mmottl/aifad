@@ -1,8 +1,4 @@
-(^|/)\.bzr($|/)
-(^|/)\.hg($|/)
-(^|/)\.hgtags($|/)
-\.omakedb
-\.omakedb.lock
-.*\.(cm[ioax]|o|a)
-src/aifad
-src/(algdt_lexer|algdt_parser_y).ml(i?)$
+^.*\.swp$
+^setup\.(log|data)$
+^_build/.*$
+^aifad\.native$
