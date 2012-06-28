@@ -1,4 +1,4 @@
-# comment
+# This is a comment
 
 diameter = Large | Small.
 
