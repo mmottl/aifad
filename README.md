@@ -74,7 +74,7 @@ Using AIFAD
 ### Specification of Algebraic Datatypes
 
 Before AIFAD can learn from data, you will have to tell it what your data
-looks like.  This requires creating a file with the extension '`.ads`'
+looks like.  This requires creating a file with the extension `.ads`
 (algebraic datatype specification), which contains a set of (possibly
 recursive) type equations.  If you happen to know modern functional or logic
 programming languages, this concept will be common to you.
@@ -138,7 +138,7 @@ tabulation, carriage return, line feed and form feed.  Blanks are ignored,
 but they separate adjacent identifiers, literals and keywords that would
 otherwise be confused as one single identifier, literal or keyword.
 
-Comments in specifications start with a hash '`#`' and are valid up to the
+Comments in specifications start with a hash `#` and are valid up to the
 end of the current line.
 
 Identifiers are sequences of letters, digits, \_ (the underscore character),
@@ -214,11 +214,11 @@ Files that contain only input or output data do not contain `samples` but
 
 ### C4.5-compatible Data
 
-AIFAD can handle data in C4.5-format.  Data specifications of this kind are
-stored in files having the extension '`.names`' and related data in files
-having the extension '`.data`'.  You can find an example for this data
-format in the files `c45.names` and `c45.data` in the `examples` directory
-in the distribution.
+AIFAD can handle data in C4.5-format.  Data specifications of this kind
+are stored in files having the extension `.names` and related data in files
+having the extension `.data`.  You can find an example for this data format
+in the files `c45.names` and `c45.data` in the `examples` directory in the
+distribution.
 
 The `.names`-file contains in its first line a comma-separated list of class
 values terminated by a dot.  Each following line starts with the name of an
@@ -244,7 +244,7 @@ specification of the data.  This can be done in two ways:
      but does not set a name for the data file (default: `stdin`).
 
   2. Using the `-stem` flag, which expects a filestem and sets both the name
-     of the specification and the data appropriately.  E.g. '`-stem foo`'
+     of the specification and the data appropriately.  E.g. `-stem foo`
      would set a specification file `foo.ads` and a data file `foo.add`
      for standard AIFAD data.  When using C4.5 data, the names would be
      `foo.names` and `foo.data` respectively.  C4.5 mode can be indicated
@@ -379,7 +379,7 @@ point of view, but needs further investigation.
 
 Samples containing missing values in their codomain are ignored.  For input
 data there are four strategies for handling missing values (indicated by
-'`?`' in the data):
+`?` in the data):
 
   1. Ignore samples containing missing values.  Turned on by `-mv-ignore`.
      This is recommended if you are absolutely sure that missing values
