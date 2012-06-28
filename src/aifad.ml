@@ -1,4 +1,4 @@
-(*  File: main.ml
+(*  File: aifad.ml
 
     AIFAD - Automated Induction of Functions over Algebraic Datatypes
 
@@ -23,8 +23,6 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *)
-
-(* $Id: main.ml,v 1.125 2006/01/17 00:23:38 mottl Exp $ *)
 
 open Format
 
@@ -62,7 +60,7 @@ let () =
           print_model "" "`" dispec_info cispec_info model
       | `C45Model (_, dispec_info, cispec_info, _, model) ->
           print_model "t__" "`V" dispec_info cispec_info model
-      | _ -> failwith "main: error loading model: unknown format")
+      | _ -> failwith "aifad: error loading model: unknown format")
   | RandGen n, true, Some spec, _ ->
       let dispec_info, cispec_info =
         do_open_in spec (fun sp_ic -> read_spec (Lexing.from_channel sp_ic)) in
