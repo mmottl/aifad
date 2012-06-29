@@ -82,6 +82,7 @@ programming languages, this concept will be common to you.
 Here is an example of a specification file (file `examples/test.ads` in
 the distribution):
 
+    :::ocaml
     # This is a comment
 
     diameter = Large | Small.
@@ -115,6 +116,7 @@ values.  For example, the `meal` value `Pizza` requires the specification of
 `diameter`, `spiced`, and `topping`.  An example instance of this type of
 value is:
 
+    :::ocaml
     Pizza (Large, False, Cheese Mozzarella)
 
 The datatype `satisfaction` demonstrates recursion.  A restaurant guest's
@@ -158,6 +160,7 @@ uppercase characters.  The only keywords are `domain` and `codomain`.
 Here is the EBNF-grammar of type definitions, of which you can have almost
 arbitrarily many in your specification:
 
+    :::ocaml
     type-definition ::= type-name '=' rhs '.'
     rhs             ::= sum { '|' sum }* | type
     sum             ::= data-constructor | data-constructor type
@@ -174,6 +177,7 @@ data, and another type `codomain` to indicate the form of your output data.
 Data files take the extension `.add`.  Here is an example for a data file
 used for learning models (file `examples/test.add` in the distribution):
 
+    :::ocaml
     WienerSchnitzel Large -> High.
     WienerSchnitzel Small -> Low.
     Pizza (Large, True, Cheese Mozzarella) -> Very High.
@@ -201,6 +205,7 @@ formats are valid.
 Here is the EBNF-grammar of samples as used in data files containing mappings
 from input to output values:
 
+    :::ocaml
     sample        ::= data '->' data '.'
     data          ::= sum-value | product-value
     sum-value     ::= data-constructor | data-constructor argument
@@ -255,16 +260,19 @@ specification of the data.  This can be done in two ways:
 The following command learns standard AIFAD data, the specification being
 in file `foo.ads` while the data is being read via `stdin` from file `bar.add`:
 
+    :::sh
     aifad -learn -spec foo.ads < bar.add
 
 The next command learns specification `foo.ads` and data `foo.add` given
 a stem:
 
+    :::sh
     aifad -learn -stem foo
 
 The following command learns specification `foo.names` and `foo.data` given
 a stem (C4.5-format):
 
+    :::sh
     aifad -c45 -learn -stem foo
 
 By default the system will learn a model and print it in a human-readable
@@ -276,6 +284,7 @@ If you also want to store the learnt model in a machine-readable format for
 later use (application), then you will have to specify a name for the model
 file using the `-model` flag, e.g.:
 
+    :::sh
     aifad -c45 -learn -stem foo -model mymodel.c45model
 
 Note that C4.5-models and ones for standard AIFAD specifications are not
@@ -301,6 +310,7 @@ When no other actions are mentioned on the command-line except for the
 machine-readable model, the model will be printed in human-readable form on
 `stdout`, e.g.:
 
+    :::sh
     aifad -model mymodel.c45model
 
 ### Learning Parameters
@@ -420,6 +430,7 @@ the model application will be printed in the corresponding format (standard
 AIFAD or C4.5) to `stdout` or to a file whose name is passed to the flag
 `-pred`.  For example:
 
+    :::sh
     aifad -apply -model mymodel.c45model < input.data -pred prediction.data
 
 There is no need here to specify the type of model (C4.5), because the latter
@@ -442,6 +453,7 @@ The result of the comparison consists of various statistics:
 
 Example application:
 
+    :::sh
     aifad -spec foo.spec -model mymodel.model -eval output.data < input.data
 
 ### Model complexity
@@ -462,16 +474,19 @@ want C4.5-data.
 The following generates ten random samples on `stdout` for a standard AIFAD
 specification `foo.ads`:
 
+    :::sh
     aifad -rand-gen 10 -spec foo.ads
 
 If you do not want to generate data for the target variable(s), use this
 instead:
 
+    :::sh
     aifad -rand-gen-no-target 10 -spec foo.ads
 
 You can even simulate the presence of missing values by setting their
 probability (default: 0.01):
 
+    :::sh
     aifad -rand-gen 10 -rand-mv-prob 0.05 -spec foo.ads
 
 If you want to pass a certain seed to the random number generator, use
