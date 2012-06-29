@@ -82,7 +82,7 @@ programming languages, this concept will be common to you.
 Here is an example of a specification file (file `examples/test.ads` in
 the distribution):
 
-    :::haskell
+    :::text
     # This is a comment
 
     diameter = Large | Small.
@@ -116,7 +116,7 @@ values.  For example, the `meal` value `Pizza` requires the specification of
 `diameter`, `spiced`, and `topping`.  An example instance of this type of
 value is:
 
-    :::haskell
+    :::text
     Pizza (Large, False, Cheese Mozzarella)
 
 The datatype `satisfaction` demonstrates recursion.  A restaurant guest's
@@ -160,7 +160,7 @@ uppercase characters.  The only keywords are `domain` and `codomain`.
 Here is the EBNF-grammar of type definitions, of which you can have almost
 arbitrarily many in your specification:
 
-    :::haskell
+    :::text
     type-definition ::= type-name '=' rhs '.'
     rhs             ::= sum { '|' sum }* | type
     sum             ::= data-constructor | data-constructor type
@@ -177,7 +177,7 @@ data, and another type `codomain` to indicate the form of your output data.
 Data files take the extension `.add`.  Here is an example for a data file
 used for learning models (file `examples/test.add` in the distribution):
 
-    :::haskell
+    :::text
     WienerSchnitzel Large -> High.
     WienerSchnitzel Small -> Low.
     Pizza (Large, True, Cheese Mozzarella) -> Very High.
@@ -205,7 +205,7 @@ formats are valid.
 Here is the EBNF-grammar of samples as used in data files containing mappings
 from input to output values:
 
-    :::haskell
+    :::text
     sample        ::= data '->' data '.'
     data          ::= sum-value | product-value
     sum-value     ::= data-constructor | data-constructor argument
