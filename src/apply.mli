@@ -24,8 +24,6 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *)
 
-(* $Id: apply.mli,v 1.2 2006/01/17 00:23:37 mottl Exp $ *)
-
 val apply : string -> string option -> unit
 (** [apply model_name maybe_pred_name] applies the model in file
     [model_name] to data from standard input and prints it to [stdout]

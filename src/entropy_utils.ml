@@ -24,8 +24,6 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *)
 
-(* $Id: entropy_utils.ml,v 1.14 2006/01/17 00:23:37 mottl Exp $ *)
-
 let log_2 = log 2.0
 let log2 n = log n /. log_2
 

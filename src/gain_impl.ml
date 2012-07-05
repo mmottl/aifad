@@ -1,4 +1,3 @@
-(*  File: gain_impl.ml
 
     AIFAD - Automated Induction of Functions over Algebraic Datatypes
 
@@ -23,8 +22,6 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *)
-
-(* $Id: gain_impl.ml,v 1.17 2006/01/17 00:23:37 mottl Exp $ *)
 
 open Utils
 open Algdt_types

@@ -24,8 +24,6 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *)
 
-(* $Id: info_utils.ml,v 1.5 2006/01/17 00:23:38 mottl Exp $ *)
-
 open Utils
 open Algdt_types
 open Model_types

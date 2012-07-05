@@ -24,8 +24,6 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *)
 
-(* $Id: algdt_pp.ml,v 1.14 2006/01/17 00:23:37 mottl Exp $ *)
-
 open Format
 open Utils
 open Algdt_types

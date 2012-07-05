@@ -24,8 +24,6 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *)
 
-(* $Id: dd2_entropy.ml,v 1.18 2006/01/17 00:23:37 mottl Exp $ *)
-
 open Utils
 open Algdt_types
 open Algdt_utils

@@ -23,8 +23,6 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *)
 
-(* $Id: algdt_utils.mli,v 1.4 2006/01/17 00:23:37 mottl Exp $ *)
-
 open Algdt_types
 
 (** Utility functions and definitions *)

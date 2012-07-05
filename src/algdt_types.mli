@@ -24,8 +24,6 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *)
 
-(* $Id: algdt_types.mli,v 1.36 2006/01/17 00:23:37 mottl Exp $ *)
-
 (** Specification of widely used types *)
 
 (** {6 Algebraic types} *)

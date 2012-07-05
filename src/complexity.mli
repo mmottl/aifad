@@ -24,8 +24,6 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *)
 
-(* $Id: complexity.mli,v 1.3 2006/01/17 00:23:37 mottl Exp $ *)
-
 open Algdt_types
 open Model_types
 

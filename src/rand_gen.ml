@@ -24,8 +24,6 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *)
 
-(* $Id: rand_gen.ml,v 1.10 2006/01/17 00:23:38 mottl Exp $ *)
-
 open Algdt_types
 open Algdt_utils
 open Model_data

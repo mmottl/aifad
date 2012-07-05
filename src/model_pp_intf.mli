@@ -24,8 +24,6 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *)
 
-(* $Id: model_pp_intf.mli,v 1.8 2006/01/17 00:23:38 mottl Exp $ *)
-
 open Algdt_types
 
 module type SPEC = sig
