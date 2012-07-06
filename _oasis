@@ -29,4 +29,4 @@ SourceRepository trunk
   Type:       hg
   Location:   ssh://hg@bitbucket.org/mmottl/aifad
   Browser:    https://bitbucket.org/mmottl/aifad
-  Tag:        release-$pkg_version
+  Tag:        release-$(pkg_version)
