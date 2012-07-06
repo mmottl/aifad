@@ -1,4 +1,4 @@
 ^.*\.swp$
 ^setup\.(log|data)$
 ^_build/.*$
-^aifad\.native$
+^.*\.native$
