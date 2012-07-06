@@ -1,4 +1,6 @@
-(*  AIFAD - Automated Induction of Functions over Algebraic Datatypes
+(*  File: version.ml
+
+    AIFAD - Automated Induction of Functions over Algebraic Datatypes
 
     Author: Markus Mottl
     email:  markus.mottl@gmail.com

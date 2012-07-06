@@ -1,7 +1,5 @@
 %{
-(*  File: algdt_parser_y.mly
-
-    AIFAD - Automated Induction of Functions over Algebraic Datatypes
+(* AIFAD - Automated Induction of Functions over Algebraic Datatypes
 
     Author: Markus Mottl
     email:  markus.mottl@gmail.com
