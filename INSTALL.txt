@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: a4e732330ff19c20db081838e0cceed6) *)
+(* DO NOT EDIT (digest: 45f88beb1b0131eb14559fad54528d82) *)
 This is the INSTALL file for the aifad distribution.
 
 This package uses OASIS to generate its build system. See section OASIS for
@@ -10,7 +10,7 @@ Dependencies
 
 In order to compile this package, you will need:
 * ocaml (>= 4.00)
-* findlib
+* findlib (>= 1.3.2)
 * res
 * pcre
 * cfg
