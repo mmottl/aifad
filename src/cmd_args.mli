@@ -26,9 +26,6 @@
 
 (** Command line interface *)
 
-val version : string
-(** [version] version of AIFAD. *)
-
 val start_time : float
 (** [start_time] time in Epoche-seconds when program started. *)
 

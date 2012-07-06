@@ -24,8 +24,6 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *)
 
-let version = "1.0.24 (2004-03-24)"
-
 let start_time = Unix.gettimeofday ()
 
 open Model_data
@@ -150,7 +148,7 @@ let rec args =
       "-rand-self-init", Arg.Unit Random.self_init,
       "\tInitialize random number generator (system-dependent)\n"
     );(
-      "-v", Arg.Unit (fun () -> print_endline version; exit 0),
+      "-v", Arg.Unit (fun () -> print_endline Version.version; exit 0),
       "\t\t\tshow version number, then exit\n"
     );(
       "-help", Arg.Unit (fun () -> Arg.usage args usage; exit 0),
