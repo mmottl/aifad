@@ -507,7 +507,7 @@ In the case of bugs, feature requests, contributions and similar, you can
 contact me here: <markus.mottl@gmail.com>
 
 Up-to-date information concerning this tool should be available at:
-<http://www.bitbucket.org/mmottl/aifad>
+<https://bitbucket.org/mmottl/aifad>
 
 Enjoy!
 
