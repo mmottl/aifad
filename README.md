@@ -456,14 +456,14 @@ Example application:
     :::sh
     aifad -spec foo.spec -model mymodel.model -eval output.data < input.data
 
-### Model complexity
+### Model Complexity
 
 After learning, the model complexity is printed to `stderr`.  It is a
 dimensionless measure that tells how many bits of input are needed in average
 to produce one bit of output.  Note that this is completely unrelated to
 the accuracy of the model!
 
-### Random data generation
+### Random Data Generation
 
 For testing purposes it is often very helpful to generate random
 data given some specification.  You might want to try this out with
@@ -495,7 +495,7 @@ in a system-dependent way.
 
 ---------------------------------------------------------------------------
 
-Contact information and contributing
+Contact Information and Contributing
 ------------------------------------
 
 Since there are hardly any real world data sets that exploit the advanced
