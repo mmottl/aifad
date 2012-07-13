@@ -26,7 +26,6 @@
 
 open Algdt_types
 open Model_types
-open Model_utils
 open Dshave
 
 module type SPEC = sig

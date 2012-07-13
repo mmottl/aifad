@@ -26,6 +26,8 @@ Executable aifad
   BuildDepends:   threads, res, pcre, cfg
   CompiledObject: best
 
+#
+
 SourceRepository trunk
   Type:       hg
   Location:   ssh://hg@bitbucket.org/mmottl/aifad
