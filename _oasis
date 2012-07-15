@@ -1,6 +1,6 @@
 OASISFormat:      0.3
 Name:             aifad
-Version:          2.0.0
+Version:          2.0.1
 Synopsis:         AIFAD - Automated Induction of Functions over Algebraic Datatypes
 Description:      AIFAD is a machine learning tool that generalizes decision tree learning to algebraic datatypes.
 Authors:          Markus Mottl <markus.mottl@gmail.com>
