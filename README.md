@@ -1,12 +1,12 @@
-AIFAD - Automated Induction of Functions over Algebraic Datatypes
-=================================================================
+AIFAD - Automated Induction of Functions over Algebraic Data Types
+==================================================================
 
 ---------------------------------------------------------------------------
 
 What is AIFAD?
 --------------
 
-AIFAD stands for _Automated Induction of Functions over Algebraic Datatypes_
+AIFAD stands for _Automated Induction of Functions over Algebraic Data Types_
 and is an application written in [OCaml](http://www.ocaml.org) that improves
 decision tree learning by supporting significantly more complex kinds of data.
 This allows users to more conveniently describe the data they want to learn
@@ -48,7 +48,7 @@ Features
 AIFAD essentially offers you the same amount of expressiveness on both sides
 of the data (input and output).  Discrete data specifications as supported
 by more common decision tree learners (e.g. C4.5) are a strict subcase of
-algebraic datatypes as used in AIFAD.  Furthermore, all kinds of algorithms
+algebraic data types as used in AIFAD.  Furthermore, all kinds of algorithms
 that operate on "normal" decision trees (e.g. pruning algorithms) should be
 generalizable to the more expressive representation.
 
@@ -71,11 +71,11 @@ generalizable to the more expressive representation.
 Using AIFAD
 -----------
 
-### Specification of Algebraic Datatypes
+### Specification of Algebraic Data Types
 
 Before AIFAD can learn from data, you will have to tell it what your data
 looks like.  This requires creating a file with the extension `.ads`
-(algebraic datatype specification), which contains a set of (possibly
+(algebraic data type specification), which contains a set of (possibly
 recursive) type equations.  If you happen to know modern functional or logic
 programming languages, this concept will be common to you.
 
@@ -105,7 +105,7 @@ the distribution):
     domain = meal.
     codomain = satisfaction.
 
-The above equations contain the name of datatypes on their left-hand side
+The above equations contain the name of data types on their left-hand side
 and their specification on the right-hand side.  For example, a value of
 type `cheese` can be `Mozzarella` or `Gorgonzola`.  A (pizza) topping can
 be `Cheese`, `Tomatoes`, or `Mushrooms`, but `Cheese` values require the
@@ -119,7 +119,7 @@ value is:
     :::text
     Pizza (Large, False, Cheese Mozzarella)
 
-The datatype `satisfaction` demonstrates recursion.  A restaurant guest's
+The data type `satisfaction` demonstrates recursion.  A restaurant guest's
 satisfaction might be `Low`, `High`, `Very High`, `Very (Very Low)`, etc.
 
 `domain` is a special typename and tells AIFAD what values should be used as
@@ -280,7 +280,7 @@ format to `stdout`.  The model complexity, i.e. the number of bits consumed
 from input data to output one bit of information, is printed to `stderr`.
 If `-no-hmod` is specified, no human-readable model will be printed.
 
-If you also want to store the learnt model in a machine-readable format for
+If you also want to store the learned model in a machine-readable format for
 later use (application), then you will have to specify a name for the model
 file using the `-model` flag, e.g.:
 
@@ -288,7 +288,7 @@ file using the `-model` flag, e.g.:
     aifad -c45 -learn -stem foo -model mymodel.c45model
 
 Note that C4.5-models and ones for standard AIFAD specifications are not
-compatible.  AIFAD makes sure that you do not accidently apply some model
+compatible.  AIFAD makes sure that you do not accidentally apply some model
 to the wrong data.
 
 #### Models
@@ -339,7 +339,7 @@ default, which assumes dependence.
 
 Choose `-shallow-entropy` if you want to compute the entropy without
 descending into structures.  This is much faster than the default, which
-does so, especially for deeply nested datastructures.
+does so, especially for deeply nested data structures.
 
 #### Most frequent values
 
@@ -360,7 +360,7 @@ times and excessive model size.
 
 Though the learning time is generally polynomial in the size of the
 dataset, this flag can make the time complexity almost exponential in the
-beginning, even for flat datastructures.  When using structured data, time
+beginning, even for flat data structures.  When using structured data, time
 complexity is currently indeed exponential then, though this problem might
 be solved in a future release using very complicated models that employ CPS
 (continuation-passing style).
