@@ -177,14 +177,14 @@ let factorize_no_match models =
                   match tsub.(model_ix) with
                   | VarFree fdsum -> new_fdsums.(ix) <- fdsum
                   | VarStrct _ | Var -> assert false (* impossible *) in
-            list_iteri acti same;
+            List.iteri acti same;
             Val new_fdsums
         | Let (match_mod, var_mods) ->
             let new_var_mods = Array.make n_new_tpl Var in
             let acti ix = function
               | Left tpl_ix -> new_var_mods.(ix) <- var_mods.(tpl_ix)
               | Right tsub -> new_var_mods.(ix) <- tsub.(model_ix) in
-            list_iteri acti same;
+            List.iteri acti same;
             if array_forall is_var new_var_mods then MatchMod match_mod
             else Let (match_mod, new_var_mods)
         | MatchMod _ -> assert false (* impossible *) in

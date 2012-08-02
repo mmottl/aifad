@@ -49,7 +49,7 @@ let rec vars_entropy_loop pre_histos pre_var_samples =
     let acti dst_ix src_ix =
       histos.(dst_ix) <- pre_histos.(src_ix);
       var_samples.(dst_ix) <- pre_var_samples.(src_ix) in
-    list_iteri acti !ixs_ref;
+    List.iteri acti !ixs_ref;
     let n_vars_1 = n_vars - 1 in
     let histo = histos.(n_vars_1) in
     let samples = var_samples.(n_vars_1) in

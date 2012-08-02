@@ -150,7 +150,7 @@ let read_samples lexbuf dispec_info dfspec cispec_info cfspec =
           for i = 0 to cfdsums_lix do
             cvars.(i).(n_samples_1 - n) <- csmpl.(i)
           done in
-        list_iteri act smpl_lst;
+        List.iteri act smpl_lst;
         dvars, cvars in
   loop 0 []
 

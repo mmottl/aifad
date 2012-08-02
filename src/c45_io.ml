@@ -253,7 +253,7 @@ let calc_vars n_samples n_vars dcnstr_tbl target_attrs rows =
   let chisto = Array.make (Array.length target_attrs) 0 in
   let cvars = [| { tp = 1; samples = csamples; histo = chisto; } |] in
   let n_samples_1 = n_samples - 1 in
-  list_iteri
+  List.iteri
     (fun ix (sample, ccnstr) ->
       let sample_ix = n_samples_1 - ix in
       csamples.(sample_ix) <- FDAtom ccnstr;
@@ -340,7 +340,7 @@ let read_c45_data (tp_names, target_attrs, pat, _ as c45_spec) mv ic =
       let chisto = Array.make (Array.length target_attrs) 0 in
       let cvars = [| { tp = 1; samples = csamples; histo = chisto; } |] in
 
-      list_iteri
+      List.iteri
         (fun ix (maybe_sample, ccnstr) ->
           let sample_ix = n_samples_1 - ix in
           csamples.(sample_ix) <- FDAtom ccnstr;
@@ -419,7 +419,7 @@ let read_c45_data (tp_names, target_attrs, pat, _ as c45_spec) mv ic =
       let chisto = Array.make (Array.length target_attrs) 0 in
       let cvars = [| { tp = 1; samples = csamples; histo = chisto; } |] in
 
-      list_iteri
+      List.iteri
         (fun ix (sample, ccnstr) ->
           let sample_ix = n_samples_1 - ix in
           csamples.(sample_ix) <- FDAtom ccnstr;

@@ -182,7 +182,7 @@ let rec calc_sum_mod tp cnstr = function
       let subs = Array.make (Array.length sub_tps) dummy_fdsum in
       let acti sub_ix (var_ix, subcnstr, sub_info) =
         subs.(sub_ix) <- calc_sum_mod vars.(var_ix).tp subcnstr sub_info in
-      list_iteri acti pos_infos;
+      List.iteri acti pos_infos;
       FDStrct (cnstr, subs)
 
 

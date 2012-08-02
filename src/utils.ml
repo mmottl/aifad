@@ -60,12 +60,6 @@ let rec one_list_fold_left f acc = function
 
 (* List functions *)
 
-let rec list_iteri_loop f i = function
-  | [] -> ()
-  | h :: t -> f i h; list_iteri_loop f (i + 1) t
-
-let list_iteri f lst = list_iteri_loop f 0 lst
-
 let rec list_fold_lefti_loop f ix acc = function
   | [] -> acc
   | h :: t -> list_fold_lefti_loop f (ix + 1) (f ix acc h) t

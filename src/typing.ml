@@ -184,7 +184,7 @@ let calc_ispec_info live_gr dtp (tp_tbl, cnstr_tbl, _, ispec) =
                   new_sums.(new_tag) <- IStrct (map_prod_el cnv_tp pe)
               | IAtom -> ())
           | CProd, _ -> assert false in
-        list_iteri act_tag rhs_lst;
+        List.iteri act_tag rhs_lst;
         dispec.(new_nt) <- Sums new_sums in
   NTMap.iter act_nts gr_dom;
   {
