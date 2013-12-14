@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: 8cda0a8640b10610e580f8ebdb4d9a3e) *)
+(* DO NOT EDIT (digest: 098585fe4c145f4cf91f22e370032538) *)
 This is the INSTALL file for the aifad distribution.
 
 This package uses OASIS to generate its build system. See section OASIS for
@@ -9,7 +9,7 @@ Dependencies
 ============
 
 In order to compile this package, you will need:
-* ocaml (>= 4.00)
+* ocaml
 * findlib (>= 1.3.1)
 * res
 * pcre
@@ -27,7 +27,7 @@ Installing
 Uninstalling
 ============
 
-1. Go to the root of the package 
+1. Go to the root of the package
 2. Run 'ocaml setup.ml -uninstall'
 
 OASIS
