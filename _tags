@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 06a16628ce2bc52135f669a9f80af292)
+# DO NOT EDIT (digest: 79702d5b4caf9015df5f7af585566b73)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -14,14 +14,14 @@
 "_darcs": -traverse
 "_darcs": not_hygienic
 # Executable aifad
-<src/aifad.{native,byte}>: pkg_threads
-<src/aifad.{native,byte}>: pkg_res
-<src/aifad.{native,byte}>: pkg_pcre
-<src/aifad.{native,byte}>: pkg_cfg
-<src/*.ml{,i}>: pkg_threads
-<src/*.ml{,i}>: pkg_res
-<src/*.ml{,i}>: pkg_pcre
-<src/*.ml{,i}>: pkg_cfg
+<src/aifad.{native,byte}>: package(threads)
+<src/aifad.{native,byte}>: package(res)
+<src/aifad.{native,byte}>: package(pcre)
+<src/aifad.{native,byte}>: package(cfg)
+<src/*.ml{,i}>: package(threads)
+<src/*.ml{,i}>: package(res)
+<src/*.ml{,i}>: package(pcre)
+<src/*.ml{,i}>: package(cfg)
 # OASIS_STOP
 
 true: -traverse
