@@ -1,8 +1,12 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: 39233cbfb47f09567f436cecf7abecb2) *)
-Authors of aifad
-Markus Mottl <markus.mottl@gmail.com>
+(* DO NOT EDIT (digest: ca1a8c78f2ca6b65e525e367c68d4160) *)
 
-Current maintainers of aifad
-Markus Mottl <markus.mottl@gmail.com>
+Authors of aifad:
+
+* Markus Mottl <markus.mottl@gmail.com>
+
+Current maintainers of aifad:
+
+* Markus Mottl <markus.mottl@gmail.com>
+
 (* OASIS_STOP *)

@@ -82,28 +82,29 @@ programming languages, this concept will be common to you.
 Here is an example of a specification file (file `examples/test.ads` in
 the distribution):
 
-    :::text
-    # This is a comment
+```text
+# This is a comment
 
-    diameter = Large | Small.
+diameter = Large | Small.
 
-    cheese = Mozzarella | Gorgonzola.
+cheese = Mozzarella | Gorgonzola.
 
-    topping = Cheese cheese | Tomatoes | Mushrooms.
+topping = Cheese cheese | Tomatoes | Mushrooms.
 
-    spiced = False | True.
+spiced = False | True.
 
-    meal =
-      | WienerSchnitzel diameter
-      | Pizza (diameter * spiced * topping)
-      | TapirSoup spiced.
+meal =
+  | WienerSchnitzel diameter
+  | Pizza (diameter * spiced * topping)
+  | TapirSoup spiced.
 
-    drink = Water | Beer | Wine.
+drink = Water | Beer | Wine.
 
-    satisfaction = Low | High | Very satisfaction.
+satisfaction = Low | High | Very satisfaction.
 
-    domain = meal.
-    codomain = satisfaction.
+domain = meal.
+codomain = satisfaction.
+```
 
 The above equations contain the name of data types on their left-hand side
 and their specification on the right-hand side.  For example, a value of
@@ -116,8 +117,9 @@ values.  For example, the `meal` value `Pizza` requires the specification of
 `diameter`, `spiced`, and `topping`.  An example instance of this type of
 value is:
 
-    :::text
-    Pizza (Large, False, Cheese Mozzarella)
+```text
+Pizza (Large, False, Cheese Mozzarella)
+```
 
 The data type `satisfaction` demonstrates recursion.  A restaurant guest's
 satisfaction might be `Low`, `High`, `Very High`, `Very (Very Low)`, etc.
@@ -160,12 +162,13 @@ uppercase characters.  The only keywords are `domain` and `codomain`.
 Here is the EBNF-grammar of type definitions, of which you can have almost
 arbitrarily many in your specification:
 
-    :::text
-    type-definition ::= type-name '=' rhs '.'
-    rhs             ::= sum { '|' sum }* | type
-    sum             ::= data-constructor | data-constructor type
-    type            ::= type-name | product
-    product         ::= '(' type { '*' type }+ ')'
+```text
+type-definition ::= type-name '=' rhs '.'
+rhs             ::= sum { '|' sum }* | type
+sum             ::= data-constructor | data-constructor type
+type            ::= type-name | product
+product         ::= '(' type { '*' type }+ ')'
+```
 
 Types can only be defined once.  Data constructors may appear only once at
 each right-hand side, but may be reused in other definitions.  You will have
@@ -177,16 +180,17 @@ data, and another type `codomain` to indicate the form of your output data.
 Data files take the extension `.add`.  Here is an example for a data file
 used for learning models (file `examples/test.add` in the distribution):
 
-    :::text
-    WienerSchnitzel Large -> High.
-    WienerSchnitzel Small -> Low.
-    Pizza (Large, True, Cheese Mozzarella) -> Very High.
-    Pizza (Large, False, Cheese Gorgonzola) -> Very (Very High).
-    Pizza (Small, True, Cheese Mozzarella) -> High.
-    Pizza (Small, False, Cheese Gorgonzola) -> Very High.
-    TapirSoup False -> Very Low.
-    TapirSoup True -> Very Low.
-    TapirSoup True -> Very High.
+```text
+WienerSchnitzel Large -> High.
+WienerSchnitzel Small -> Low.
+Pizza (Large, True, Cheese Mozzarella) -> Very High.
+Pizza (Large, False, Cheese Gorgonzola) -> Very (Very High).
+Pizza (Small, True, Cheese Mozzarella) -> High.
+Pizza (Small, False, Cheese Gorgonzola) -> Very High.
+TapirSoup False -> Very Low.
+TapirSoup True -> Very Low.
+TapirSoup True -> Very High.
+```
 
 Such files follow the same lexical conventions as data specifications.
 
@@ -205,14 +209,15 @@ formats are valid.
 Here is the EBNF-grammar of samples as used in data files containing mappings
 from input to output values:
 
-    :::text
-    sample        ::= data '->' data '.'
-    data          ::= sum-value | product-value
-    sum-value     ::= data-constructor | data-constructor argument
-    argument      ::= data-constructor
-                    | '(' data-constructor argument ')'
-                    | product-value
-    product-value ::= '(' data { ',' data }+ ')'
+```text
+sample        ::= data '->' data '.'
+data          ::= sum-value | product-value
+sum-value     ::= data-constructor | data-constructor argument
+argument      ::= data-constructor
+                | '(' data-constructor argument ')'
+                | product-value
+product-value ::= '(' data { ',' data }+ ')'
+```
 
 Files that contain only input or output data do not contain `samples` but
 `data` followed by a dot.
@@ -260,20 +265,23 @@ specification of the data.  This can be done in two ways:
 The following command learns standard AIFAD data, the specification being
 in file `foo.ads` while the data is being read via `stdin` from file `bar.add`:
 
-    :::sh
-    aifad -learn -spec foo.ads < bar.add
+```sh
+aifad -learn -spec foo.ads < bar.add
+```
 
 The next command learns specification `foo.ads` and data `foo.add` given
 a stem:
 
-    :::sh
-    aifad -learn -stem foo
+```sh
+aifad -learn -stem foo
+```
 
 The following command learns specification `foo.names` and `foo.data` given
 a stem (C4.5-format):
 
-    :::sh
-    aifad -c45 -learn -stem foo
+```sh
+aifad -c45 -learn -stem foo
+```
 
 By default the system will learn a model and print it in a human-readable
 format to `stdout`.  The model complexity, i.e. the number of bits consumed
@@ -284,8 +292,9 @@ If you also want to store the learned model in a machine-readable format for
 later use (application), then you will have to specify a name for the model
 file using the `-model` flag, e.g.:
 
-    :::sh
-    aifad -c45 -learn -stem foo -model mymodel.c45model
+```sh
+aifad -c45 -learn -stem foo -model mymodel.c45model
+```
 
 Note that C4.5-models and ones for standard AIFAD specifications are not
 compatible.  AIFAD makes sure that you do not accidentally apply some model
@@ -310,8 +319,9 @@ When no other actions are mentioned on the command-line except for the
 machine-readable model, the model will be printed in human-readable form on
 `stdout`, e.g.:
 
-    :::sh
-    aifad -model mymodel.c45model
+```sh
+aifad -model mymodel.c45model
+```
 
 ### Learning Parameters
 
@@ -430,8 +440,9 @@ the model application will be printed in the corresponding format (standard
 AIFAD or C4.5) to `stdout` or to a file whose name is passed to the flag
 `-pred`.  For example:
 
-    :::sh
-    aifad -apply -model mymodel.c45model < input.data -pred prediction.data
+```sh
+aifad -apply -model mymodel.c45model < input.data -pred prediction.data
+```
 
 There is no need here to specify the type of model (C4.5), because the latter
 knows what it is.
@@ -453,8 +464,9 @@ The result of the comparison consists of various statistics:
 
 Example application:
 
-    :::sh
-    aifad -spec foo.spec -model mymodel.model -eval output.data < input.data
+```sh
+aifad -spec foo.spec -model mymodel.model -eval output.data < input.data
+```
 
 ### Model Complexity
 
@@ -474,20 +486,23 @@ want C4.5-data.
 The following generates ten random samples on `stdout` for a standard AIFAD
 specification `foo.ads`:
 
-    :::sh
-    aifad -rand-gen 10 -spec foo.ads
+```sh
+aifad -rand-gen 10 -spec foo.ads
+```
 
 If you do not want to generate data for the target variable(s), use this
 instead:
 
-    :::sh
-    aifad -rand-gen-no-target 10 -spec foo.ads
+```sh
+aifad -rand-gen-no-target 10 -spec foo.ads
+```
 
 You can even simulate the presence of missing values by setting their
 probability (default: 0.01):
 
-    :::sh
-    aifad -rand-gen 10 -rand-mv-prob 0.05 -spec foo.ads
+```sh
+aifad -rand-gen 10 -rand-mv-prob 0.05 -spec foo.ads
+```
 
 If you want to pass a certain seed to the random number generator, use
 `-rand-init`.  By using `-rand-self-init`, it will be initialized at startup
@@ -507,11 +522,11 @@ In the case of bugs, feature requests, contributions and similar, you can
 contact me here: <markus.mottl@gmail.com>
 
 Up-to-date information concerning this tool should be available at:
-<https://bitbucket.org/mmottl/aifad>
+<http://mmottl.github.io/aifad>
 
 Enjoy!
 
-Markus Mottl in Rutherford, NJ on June 28, 2012
+Markus Mottl in Rutherford, NJ on July 01, 2014
 
 [^lexical]: Some equivalent definitions copied from the OCaml-manual.
 
