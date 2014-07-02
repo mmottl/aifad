@@ -1,3 +1,5 @@
+2014-07-01:  Switched version control repository to GitHub.
+
 2012-07-20:  Downgraded findlib version requirement to support the Debian
              testing branch.
 
