@@ -27,6 +27,6 @@
 true: -traverse
 <{src,examples}/**>: traverse
 
-<**/*.ml{,i}>: warn(Aer-44), strict_sequence, annot
+<**/*.ml{,i}>: warn(Aer-44), strict_sequence, annot, safe_string
 
 true: use_menhir
