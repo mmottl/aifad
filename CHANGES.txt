@@ -1,3 +1,6 @@
+2015-12-28: Switched to more permissible LGPL-2.1+ license with OCaml linking
+            exception.
+
 2014-07-01:  Switched version control repository to GitHub.
 
 2012-07-20:  Downgraded findlib version requirement to support the Debian
