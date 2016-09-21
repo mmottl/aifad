@@ -1,41 +1,31 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="AIFAD : AIFAD - Automated Induction of Functions over Algebraic Data Types is a machine learning library and application written in OCaml which generalizes decision tree learning to algebraic data types." />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>AIFAD</title>
+    <meta charset="UTF-8">
+    <title>AIFAD by mmottl</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">AIFAD</h1>
+      <h2 class="project-tagline">AIFAD - Automated Induction of Functions over Algebraic Data Types is a machine learning library and application written in OCaml which generalizes decision tree learning to algebraic data types.</h2>
+      <a href="https://github.com/mmottl/aifad" class="btn">View on GitHub</a>
+      <a href="https://github.com/mmottl/aifad/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/mmottl/aifad/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/mmottl/aifad">View on GitHub</a>
+    <section class="main-content">
+      <h1>
+<a id="aifad---automated-induction-of-functions-over-algebraic-data-types" class="anchor" href="#aifad---automated-induction-of-functions-over-algebraic-data-types" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AIFAD - Automated Induction of Functions over Algebraic Data Types</h1>
 
-          <h1 id="project_title">AIFAD</h1>
-          <h2 id="project_tagline">AIFAD - Automated Induction of Functions over Algebraic Data Types is a machine learning library and application written in OCaml which generalizes decision tree learning to algebraic data types.</h2>
+<hr>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/mmottl/aifad/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/mmottl/aifad/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="aifad---automated-induction-of-functions-over-algebraic-data-types" class="anchor" href="#aifad---automated-induction-of-functions-over-algebraic-data-types"><span class="octicon octicon-link"></span></a>AIFAD - Automated Induction of Functions over Algebraic Data Types</h1>
-
-<hr><h2>
-<a name="what-is-aifad" class="anchor" href="#what-is-aifad"><span class="octicon octicon-link"></span></a>What is AIFAD?</h2>
+<h2>
+<a id="what-is-aifad" class="anchor" href="#what-is-aifad" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is AIFAD?</h2>
 
 <p>AIFAD stands for <em>Automated Induction of Functions over Algebraic Data Types</em>
 and is an application written in <a href="http://www.ocaml.org">OCaml</a> that improves
@@ -44,7 +34,7 @@ This allows users to more conveniently describe the data they want to learn
 functions on and can improve the accuracy and complexity of resulting models.</p>
 
 <h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
 <li><p>Handles multi-valued attributes.  This has already become widespread among
@@ -69,7 +59,9 @@ latter supports.  The memory footprint is somewhat larger due to the
 impossibility of performing certain operations in-place, but still low
 enough to handle even large datasets (hundreds of thousands of samples
 with 10s of attributes) on stock hardware.</p></li>
-</ul><p>AIFAD essentially offers you the same amount of expressiveness on both sides
+</ul>
+
+<p>AIFAD essentially offers you the same amount of expressiveness on both sides
 of the data (input and output).  Discrete data specifications as supported
 by more common decision tree learners (e.g. C4.5) are a strict subcase of
 algebraic data types as used in AIFAD.  Furthermore, all kinds of algorithms
@@ -77,7 +69,7 @@ that operate on "normal" decision trees (e.g. pruning algorithms) should be
 generalizable to the more expressive representation.</p>
 
 <h3>
-<a name="missing-features" class="anchor" href="#missing-features"><span class="octicon octicon-link"></span></a>Missing Features</h3>
+<a id="missing-features" class="anchor" href="#missing-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Missing Features</h3>
 
 <ul>
 <li><p>Cannot (yet) handle numerical values.  Users can work around this by
@@ -89,11 +81,15 @@ learning, thus only considering discrete data.</p></li>
 <li><p>Does not (yet) provide post-pruning.  Can be easily added (e.g. reduced
 error pruning).</p></li>
 <li><p>Cannot (yet) learn recursive functions.</p></li>
-</ul><hr><h2>
-<a name="using-aifad" class="anchor" href="#using-aifad"><span class="octicon octicon-link"></span></a>Using AIFAD</h2>
+</ul>
+
+<hr>
+
+<h2>
+<a id="using-aifad" class="anchor" href="#using-aifad" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using AIFAD</h2>
 
 <h3>
-<a name="specification-of-algebraic-data-types" class="anchor" href="#specification-of-algebraic-data-types"><span class="octicon octicon-link"></span></a>Specification of Algebraic Data Types</h3>
+<a id="specification-of-algebraic-data-types" class="anchor" href="#specification-of-algebraic-data-types" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Specification of Algebraic Data Types</h3>
 
 <p>Before AIFAD can learn from data, you will have to tell it what your data
 looks like.  This requires creating a file with the extension <code>.ads</code>
@@ -104,7 +100,7 @@ programming languages, this concept will be common to you.</p>
 <p>Here is an example of a specification file (file <code>examples/test.ads</code> in
 the distribution):</p>
 
-<div class="highlight highlight-text"><pre># This is a comment
+<pre lang="text"><code># This is a comment
 
 diameter = Large | Small.
 
@@ -125,7 +121,7 @@ satisfaction = Low | High | Very satisfaction.
 
 domain = meal.
 codomain = satisfaction.
-</pre></div>
+</code></pre>
 
 <p>The above equations contain the name of data types on their left-hand side
 and their specification on the right-hand side.  For example, a value of
@@ -138,8 +134,8 @@ values.  For example, the <code>meal</code> value <code>Pizza</code> requires th
 <code>diameter</code>, <code>spiced</code>, and <code>topping</code>.  An example instance of this type of
 value is:</p>
 
-<div class="highlight highlight-text"><pre>Pizza (Large, False, Cheese Mozzarella)
-</pre></div>
+<pre lang="text"><code>Pizza (Large, False, Cheese Mozzarella)
+</code></pre>
 
 <p>The data type <code>satisfaction</code> demonstrates recursion.  A restaurant guest's
 satisfaction might be <code>Low</code>, <code>High</code>, <code>Very High</code>, <code>Very (Very Low)</code>, etc.</p>
@@ -156,7 +152,7 @@ not yet provide good error messages to help users improve their specifications,
 but for most applications this should not be much of a concern.</p>
 
 <h4>
-<a name="lexical-conventionslexical" class="anchor" href="#lexical-conventionslexical"><span class="octicon octicon-link"></span></a>Lexical conventions[^lexical]</h4>
+<a id="lexical-conventionslexical" class="anchor" href="#lexical-conventionslexical" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lexical conventions[^lexical]</h4>
 
 <p>The following characters are considered blanks: space, newline, horizontal
 tabulation, carriage return, line feed and form feed.  Blanks are ignored,
@@ -179,17 +175,17 @@ an underscore _.  Data constructors are identifiers, but always start with
 uppercase characters.  The only keywords are <code>domain</code> and <code>codomain</code>.</p>
 
 <h4>
-<a name="syntax" class="anchor" href="#syntax"><span class="octicon octicon-link"></span></a>Syntax</h4>
+<a id="syntax" class="anchor" href="#syntax" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Syntax</h4>
 
 <p>Here is the EBNF-grammar of type definitions, of which you can have almost
 arbitrarily many in your specification:</p>
 
-<div class="highlight highlight-text"><pre>type-definition ::= type-name '=' rhs '.'
+<pre lang="text"><code>type-definition ::= type-name '=' rhs '.'
 rhs             ::= sum { '|' sum }* | type
 sum             ::= data-constructor | data-constructor type
 type            ::= type-name | product
 product         ::= '(' type { '*' type }+ ')'
-</pre></div>
+</code></pre>
 
 <p>Types can only be defined once.  Data constructors may appear only once at
 each right-hand side, but may be reused in other definitions.  You will have
@@ -197,12 +193,12 @@ to name one of your types <code>domain</code>, which defines the shape of your i
 data, and another type <code>codomain</code> to indicate the form of your output data.</p>
 
 <h3>
-<a name="data-files" class="anchor" href="#data-files"><span class="octicon octicon-link"></span></a>Data Files</h3>
+<a id="data-files" class="anchor" href="#data-files" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data Files</h3>
 
 <p>Data files take the extension <code>.add</code>.  Here is an example for a data file
 used for learning models (file <code>examples/test.add</code> in the distribution):</p>
 
-<div class="highlight highlight-text"><pre>WienerSchnitzel Large -&gt; High.
+<pre lang="text"><code>WienerSchnitzel Large -&gt; High.
 WienerSchnitzel Small -&gt; Low.
 Pizza (Large, True, Cheese Mozzarella) -&gt; Very High.
 Pizza (Large, False, Cheese Gorgonzola) -&gt; Very (Very High).
@@ -211,7 +207,7 @@ Pizza (Small, False, Cheese Gorgonzola) -&gt; Very High.
 TapirSoup False -&gt; Very Low.
 TapirSoup True -&gt; Very Low.
 TapirSoup True -&gt; Very High.
-</pre></div>
+</code></pre>
 
 <p>Such files follow the same lexical conventions as data specifications.</p>
 
@@ -222,29 +218,31 @@ TapirSoup True -&gt; Very High.
  training (see example above).</li>
 <li>Data files containing only input values.</li>
 <li>Data files containing only output values.</li>
-</ol><p>Depending on the operation you want to perform, one or several of the above
+</ol>
+
+<p>Depending on the operation you want to perform, one or several of the above
 formats are valid.</p>
 
 <h4>
-<a name="syntax-1" class="anchor" href="#syntax-1"><span class="octicon octicon-link"></span></a>Syntax</h4>
+<a id="syntax-1" class="anchor" href="#syntax-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Syntax</h4>
 
 <p>Here is the EBNF-grammar of samples as used in data files containing mappings
 from input to output values:</p>
 
-<div class="highlight highlight-text"><pre>sample        ::= data '-&gt;' data '.'
+<pre lang="text"><code>sample        ::= data '-&gt;' data '.'
 data          ::= sum-value | product-value
 sum-value     ::= data-constructor | data-constructor argument
 argument      ::= data-constructor
                 | '(' data-constructor argument ')'
                 | product-value
 product-value ::= '(' data { ',' data }+ ')'
-</pre></div>
+</code></pre>
 
 <p>Files that contain only input or output data do not contain <code>samples</code> but
 <code>data</code> followed by a dot.</p>
 
 <h3>
-<a name="c45-compatible-data" class="anchor" href="#c45-compatible-data"><span class="octicon octicon-link"></span></a>C4.5-compatible Data</h3>
+<a id="c45-compatible-data" class="anchor" href="#c45-compatible-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>C4.5-compatible Data</h3>
 
 <p>AIFAD can handle data in C4.5-format.  Data specifications of this kind
 are stored in files having the extension <code>.names</code> and related data in files
@@ -267,7 +265,7 @@ specified in the corresponding <code>.names</code>-file.  The class values are
 contained in the last column of these comma-separated lists.</p>
 
 <h3>
-<a name="learning-from-data" class="anchor" href="#learning-from-data"><span class="octicon octicon-link"></span></a>Learning from Data</h3>
+<a id="learning-from-data" class="anchor" href="#learning-from-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Learning from Data</h3>
 
 <p>Using AIFAD on the command-line, the learning mode is turned on by the
 flag <code>-learn</code>.  In this case you will also have to provide a name for the
@@ -282,26 +280,25 @@ specification of the data.  This can be done in two ways:</p>
  for standard AIFAD data.  When using C4.5 data, the names would be
  <code>foo.names</code> and <code>foo.data</code> respectively.  C4.5 mode can be indicated
  with the flag <code>-c45</code> on the command-line.</p></li>
-</ol><h4>
-<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h4>
+</ol>
+
+<h4>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h4>
 
 <p>The following command learns standard AIFAD data, the specification being
 in file <code>foo.ads</code> while the data is being read via <code>stdin</code> from file <code>bar.add</code>:</p>
 
-<div class="highlight highlight-sh"><pre>aifad -learn -spec foo.ads &lt; bar.add
-</pre></div>
+<div class="highlight highlight-source-shell"><pre>aifad -learn -spec foo.ads <span class="pl-k">&lt;</span> bar.add</pre></div>
 
 <p>The next command learns specification <code>foo.ads</code> and data <code>foo.add</code> given
 a stem:</p>
 
-<div class="highlight highlight-sh"><pre>aifad -learn -stem foo
-</pre></div>
+<div class="highlight highlight-source-shell"><pre>aifad -learn -stem foo</pre></div>
 
 <p>The following command learns specification <code>foo.names</code> and <code>foo.data</code> given
 a stem (C4.5-format):</p>
 
-<div class="highlight highlight-sh"><pre>aifad -c45 -learn -stem foo
-</pre></div>
+<div class="highlight highlight-source-shell"><pre>aifad -c45 -learn -stem foo</pre></div>
 
 <p>By default the system will learn a model and print it in a human-readable
 format to <code>stdout</code>.  The model complexity, i.e. the number of bits consumed
@@ -312,15 +309,14 @@ If <code>-no-hmod</code> is specified, no human-readable model will be printed.<
 later use (application), then you will have to specify a name for the model
 file using the <code>-model</code> flag, e.g.:</p>
 
-<div class="highlight highlight-sh"><pre>aifad -c45 -learn -stem foo -model mymodel.c45model
-</pre></div>
+<div class="highlight highlight-source-shell"><pre>aifad -c45 -learn -stem foo -model mymodel.c45model</pre></div>
 
 <p>Note that C4.5-models and ones for standard AIFAD specifications are not
 compatible.  AIFAD makes sure that you do not accidentally apply some model
 to the wrong data.</p>
 
 <h4>
-<a name="models" class="anchor" href="#models"><span class="octicon octicon-link"></span></a>Models</h4>
+<a id="models" class="anchor" href="#models" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Models</h4>
 
 <p>Models are printed directly in the OCaml-language.  They are represented by a
 function <code>model</code>, which maps the tuple (or single attribute) of input to the
@@ -339,14 +335,13 @@ already predictable part, and more deeply nested matches predict the rest.</p>
 machine-readable model, the model will be printed in human-readable form on
 <code>stdout</code>, e.g.:</p>
 
-<div class="highlight highlight-sh"><pre>aifad -model mymodel.c45model
-</pre></div>
+<div class="highlight highlight-source-shell"><pre>aifad -model mymodel.c45model</pre></div>
 
 <h3>
-<a name="learning-parameters" class="anchor" href="#learning-parameters"><span class="octicon octicon-link"></span></a>Learning Parameters</h3>
+<a id="learning-parameters" class="anchor" href="#learning-parameters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Learning Parameters</h3>
 
 <h4>
-<a name="variable-selection" class="anchor" href="#variable-selection"><span class="octicon octicon-link"></span></a>Variable selection</h4>
+<a id="variable-selection" class="anchor" href="#variable-selection" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Variable selection</h4>
 
 <p>Currently there is only one hardly different alternative to using the gain
 ratio criterion, namely the one used by Quinlan in C4.5.  This criterion can be
@@ -355,7 +350,7 @@ that selects also on basis of the unscaled gains.  See [^quinlan1986]
 for details.</p>
 
 <h4>
-<a name="pre-pruning" class="anchor" href="#pre-pruning"><span class="octicon octicon-link"></span></a>Pre-pruning</h4>
+<a id="pre-pruning" class="anchor" href="#pre-pruning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pre-pruning</h4>
 
 <p>There is a currently still rather crude but quite effective and efficient
 pre-pruning technique, which is turned on with <code>-with-min-gr</code>.  It stops
@@ -364,7 +359,7 @@ required to select a variable for splitting exceeds the number of bits gained
 by this step.  This effectively sets a minimum gain ratio at each selection.</p>
 
 <h4>
-<a name="different-entropy-measures" class="anchor" href="#different-entropy-measures"><span class="octicon octicon-link"></span></a>Different entropy measures</h4>
+<a id="different-entropy-measures" class="anchor" href="#different-entropy-measures" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Different entropy measures</h4>
 
 <p>You can choose <code>-indep-entropy</code> when you assume that tuples (including ones
 in substructures) are independent of each other.  This is faster than the
@@ -375,7 +370,7 @@ descending into structures.  This is much faster than the default, which
 does so, especially for deeply nested data structures.</p>
 
 <h4>
-<a name="most-frequent-values" class="anchor" href="#most-frequent-values"><span class="octicon octicon-link"></span></a>Most frequent values</h4>
+<a id="most-frequent-values" class="anchor" href="#most-frequent-values" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Most frequent values</h4>
 
 <p>When no more splitting is possible or wanted, the most frequent value has
 to be computed from the available data.  By setting <code>-indep-most-freq</code>,
@@ -383,7 +378,7 @@ you can choose to assume independence of tuple elements in the data, the
 default assumes dependence again.</p>
 
 <h4>
-<a name="splitting-null-branches" class="anchor" href="#splitting-null-branches"><span class="octicon octicon-link"></span></a>Splitting null branches</h4>
+<a id="splitting-null-branches" class="anchor" href="#splitting-null-branches" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Splitting null branches</h4>
 
 <p>When splitting data depending on some variable, it can happen that one branch
 of the tree does not have any data for further learning (i.e. it is a <em>null
@@ -405,7 +400,7 @@ significantly improves learning, but there is still some experimentation
 left to be done.</p>
 
 <h4>
-<a name="random-models" class="anchor" href="#random-models"><span class="octicon octicon-link"></span></a>Random models</h4>
+<a id="random-models" class="anchor" href="#random-models" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Random models</h4>
 
 <p>There is an experimental feature which allows you to generate additional
 random models that are constructed such that at each split a variable is
@@ -422,7 +417,7 @@ choose (minimum complexity).  This seems quite interesting from an empirical
 point of view, but needs further investigation.</p>
 
 <h4>
-<a name="handling-missing-values-in-c45-data" class="anchor" href="#handling-missing-values-in-c45-data"><span class="octicon octicon-link"></span></a>Handling missing values in C4.5-data</h4>
+<a id="handling-missing-values-in-c45-data" class="anchor" href="#handling-missing-values-in-c45-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Handling missing values in C4.5-data</h4>
 
 <p>Samples containing missing values in their codomain are ignored.  For input
 data there are four strategies for handling missing values (indicated by
@@ -442,8 +437,10 @@ where data is a tuple of all variables in the C4.5-specification.</p></li>
 <li><p>Algebraically encode the data by lifting constructors such that they
  are either <code>None</code> if some value is missing in an attribute or <code>Some
  value</code> if it is present.  This is the default (<code>-mv-lift-all</code>).</p></li>
-</ol><h4>
-<a name="factorization-of-models" class="anchor" href="#factorization-of-models"><span class="octicon octicon-link"></span></a>Factorization of models</h4>
+</ol>
+
+<h4>
+<a id="factorization-of-models" class="anchor" href="#factorization-of-models" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Factorization of models</h4>
 
 <p>Models are always constructed in such a way that matches are only performed
 when some information (also from substructures) is really needed.  It can,
@@ -455,7 +452,7 @@ feature by passing <code>-no-factor</code>.  There is hardly any performance pen
 for factorization so you will usually be happy with the default.</p>
 
 <h3>
-<a name="applying-models" class="anchor" href="#applying-models"><span class="octicon octicon-link"></span></a>Applying Models</h3>
+<a id="applying-models" class="anchor" href="#applying-models" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Applying Models</h3>
 
 <p>If you have a machine-readable model file, you can apply it to input data.
 There is a certain degree of flexibility here: you can apply a model either
@@ -467,14 +464,15 @@ ignore.  The input is read from standard input, the resulting predictions of
 the model application will be printed in the corresponding format (standard
 AIFAD or C4.5) to <code>stdout</code> or to a file whose name is passed to the flag
 <code>-pred</code>.  For example:</li>
-</ul><div class="highlight highlight-sh"><pre>aifad -apply -model mymodel.c45model &lt; input.data -pred prediction.data
-</pre></div>
+</ul>
+
+<div class="highlight highlight-source-shell"><pre>aifad -apply -model mymodel.c45model <span class="pl-k">&lt;</span> input.data -pred prediction.data</pre></div>
 
 <p>There is no need here to specify the type of model (C4.5), because the latter
 knows what it is.</p>
 
 <h3>
-<a name="evaluating-results" class="anchor" href="#evaluating-results"><span class="octicon octicon-link"></span></a>Evaluating Results</h3>
+<a id="evaluating-results" class="anchor" href="#evaluating-results" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Evaluating Results</h3>
 
 <p>To evaluate the accuracy of some model application, we compare its result
 to reference data.  The file containing the reference data is specified by
@@ -489,13 +487,14 @@ The result of the comparison consists of various statistics:</p>
 <li>Number of common bits shared by both data sources (reference and predictions)</li>
 <li>Average number of common bits per sample shared by both data sources</li>
 <li>Accuracy, i.e. percentage of common bits</li>
-</ul><p>Example application:</p>
+</ul>
 
-<div class="highlight highlight-sh"><pre>aifad -spec foo.spec -model mymodel.model -eval output.data &lt; input.data
-</pre></div>
+<p>Example application:</p>
+
+<div class="highlight highlight-source-shell"><pre>aifad -spec foo.spec -model mymodel.model -eval output.data <span class="pl-k">&lt;</span> input.data</pre></div>
 
 <h3>
-<a name="model-complexity" class="anchor" href="#model-complexity"><span class="octicon octicon-link"></span></a>Model Complexity</h3>
+<a id="model-complexity" class="anchor" href="#model-complexity" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Model Complexity</h3>
 
 <p>After learning, the model complexity is printed to <code>stderr</code>.  It is a
 dimensionless measure that tells how many bits of input are needed in average
@@ -503,7 +502,7 @@ to produce one bit of output.  Note that this is completely unrelated to
 the accuracy of the model!</p>
 
 <h3>
-<a name="random-data-generation" class="anchor" href="#random-data-generation"><span class="octicon octicon-link"></span></a>Random Data Generation</h3>
+<a id="random-data-generation" class="anchor" href="#random-data-generation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Random Data Generation</h3>
 
 <p>For testing purposes it is often very helpful to generate random
 data given some specification.  You might want to try this out with
@@ -514,27 +513,26 @@ want C4.5-data.</p>
 <p>The following generates ten random samples on <code>stdout</code> for a standard AIFAD
 specification <code>foo.ads</code>:</p>
 
-<div class="highlight highlight-sh"><pre>aifad -rand-gen <span class="m">10</span> -spec foo.ads
-</pre></div>
+<div class="highlight highlight-source-shell"><pre>aifad -rand-gen 10 -spec foo.ads</pre></div>
 
 <p>If you do not want to generate data for the target variable(s), use this
 instead:</p>
 
-<div class="highlight highlight-sh"><pre>aifad -rand-gen-no-target <span class="m">10</span> -spec foo.ads
-</pre></div>
+<div class="highlight highlight-source-shell"><pre>aifad -rand-gen-no-target 10 -spec foo.ads</pre></div>
 
 <p>You can even simulate the presence of missing values by setting their
 probability (default: 0.01):</p>
 
-<div class="highlight highlight-sh"><pre>aifad -rand-gen <span class="m">10</span> -rand-mv-prob 0.05 -spec foo.ads
-</pre></div>
+<div class="highlight highlight-source-shell"><pre>aifad -rand-gen 10 -rand-mv-prob 0.05 -spec foo.ads</pre></div>
 
 <p>If you want to pass a certain seed to the random number generator, use
 <code>-rand-init</code>.  By using <code>-rand-self-init</code>, it will be initialized at startup
 in a system-dependent way.</p>
 
-<hr><h2>
-<a name="contact-information-and-contributing" class="anchor" href="#contact-information-and-contributing"><span class="octicon octicon-link"></span></a>Contact Information and Contributing</h2>
+<hr>
+
+<h2>
+<a id="contact-information-and-contributing" class="anchor" href="#contact-information-and-contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contact Information and Contributing</h2>
 
 <p>Since there are hardly any real world data sets that exploit the advanced
 data representation features provided by AIFAD, I would be very grateful to
@@ -557,18 +555,15 @@ contact me here: <a href="mailto:markus.mottl@gmail.com">markus.mottl@gmail.com<
 W. Shavlik and Thomas G. Dietterich, editors, <em>Readings in Machine Learning</em>.
 Morgan Kaufmann, 1990.  Originally published in <em>Machine Learning</em> 1:81-106,
 1986.</p>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">AIFAD maintained by <a href="https://github.com/mmottl">mmottl</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/mmottl/aifad">AIFAD</a> is maintained by <a href="https://github.com/mmottl">mmottl</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-    
+    </section>
 
+  
   </body>
 </html>
