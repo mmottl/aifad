@@ -1,0 +1,4 @@
+PKG threads threads.posix threads.vm res pcre cfg
+
+S src
+B _build/src
