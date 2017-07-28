@@ -1,0 +1,8 @@
+title: AIFAD
+description: AIFAD - Automated Induction of Functions over Algebraic Data Types is a machine learning library and application written in OCaml which generalizes decision tree learning to algebraic data types.
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
