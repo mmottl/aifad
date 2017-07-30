@@ -9,7 +9,6 @@
     -safe-string -strict-sequence
     -principal -short-paths
   ))
-
   (libraries (threads res pcre cfg))
 ))
 
