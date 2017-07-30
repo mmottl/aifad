@@ -103,10 +103,10 @@ module AlgDtCfgSpec = struct
   let compare_prod = compare
 end
 
-module Cfg = Cfg_impl.Make (AlgDtCfgSpec)
+module MyCfg = Cfg.Cfg_impl.Make (AlgDtCfgSpec)
 
 open AlgDtCfgSpec
-open Cfg
+open MyCfg
 
 let syms_of_prod_el pe =
   let acc_ref = ref [] in
@@ -125,7 +125,7 @@ let cfg_coll_def nt_n cfg = function
       array_fold_lefti coll_sum cfg ss
 
 let cfg_of_pre_ispec_info (_, _, _, ispec) =
-  array_fold_lefti cfg_coll_def Cfg.empty ispec
+  array_fold_lefti cfg_coll_def MyCfg.empty ispec
 
 
 (* Compute ispec for some domain *)
@@ -137,7 +137,7 @@ let map_prod_el f =
   loop
 
 let calc_ispec_info live_gr dtp (tp_tbl, cnstr_tbl, _, ispec) =
-  let gr_dom = grammar_contents (Cfg.grammar_of_live live_gr) in
+  let gr_dom = grammar_contents (MyCfg.grammar_of_live live_gr) in
   let tp_tbl_len = Array.length tp_tbl in
   let tp_cnv_tbl = Array.make tp_tbl_len 0 in
   let cnv_tp tp = tp_cnv_tbl.(tp) in

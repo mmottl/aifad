@@ -37,10 +37,10 @@ module AlgDtCfgSpec : sig
   val compare_prod : prod -> prod -> int
 end
 
-module Cfg : Cfg_intf.CFG with module Spec = AlgDtCfgSpec
+module MyCfg : Cfg_intf.CFG with module Spec = AlgDtCfgSpec
 
 val calc_pre_ispec_info : (cnstr_name, tp_name) type_defs -> pre_ispec_info
-val cfg_of_pre_ispec_info : pre_ispec_info -> Cfg.grammar
-val calc_ispec_info : Cfg.live_grammar -> tp -> pre_ispec_info -> ispec_info
+val cfg_of_pre_ispec_info : pre_ispec_info -> MyCfg.grammar
+val calc_ispec_info : MyCfg.live_grammar -> tp -> pre_ispec_info -> ispec_info
 
 val flatten_ispec : ispec -> fspec * tps

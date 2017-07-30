@@ -27,7 +27,7 @@ open Utils
 open Algdt_types
 open Algdt_utils
 open Typing
-open Cfg
+open MyCfg
 
 let failwith str = failwith ("Data_io." ^ str)
 
