@@ -3,7 +3,6 @@ maintainer: "Markus Mottl <markus.mottl@gmail.com>"
 authors: [ "Markus Mottl <markus.mottl@gmail.com>" ]
 license: "LGPL-2.1+ with OCaml linking exception"
 homepage: "https://mmottl.github.io/aifad"
-doc: "https://mmottl.github.io/aifad/api"
 dev-repo: "https://github.com/mmottl/aifad.git"
 bug-reports: "https://github.com/mmottl/aifad/issues"
 
