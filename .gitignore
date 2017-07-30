@@ -1,7 +1,4 @@
 .*.swp
 .merlin
-aifad.install
-setup.data
-setup.log
+*.install
 _build
-*.native
