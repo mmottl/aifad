@@ -1,0 +1,59 @@
+(jbuild_version 1)
+
+(executable (
+  (name aifad)
+  (public_name aifad)
+  (modules (
+    aifad
+    algdt_lexer
+    algdt_parser
+    algdt_parser_y
+    algdt_pp
+    algdt_types
+    algdt_utils
+    apply
+    c45_io
+    cmd_args
+    complexity
+    data_io
+    dd2_entropy
+    deco_impl
+    deco_intf
+    ds2_entropy
+    ds_entropy
+    dshave
+    entropy_utils
+    eval
+    factor
+    gain_impl
+    gain_intf
+    id_entropy
+    info_utils
+    is_entropy
+    learn
+    learn_nothreads
+    model_data
+    model_pp_impl
+    model_pp_intf
+    model_types
+    model_utils
+    most_prob
+    rand_gen
+    split_impl
+    split_intf
+    typing
+    utils
+    version
+  ))
+  (flags (
+    :standard
+    -w -9
+    -safe-string -strict-sequence
+    -principal -short-paths
+  ))
+
+  (libraries (threads res pcre cfg))
+))
+
+(ocamllex (algdt_lexer))
+(ocamlyacc (algdt_parser_y))

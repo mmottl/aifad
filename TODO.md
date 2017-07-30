@@ -1,5 +1,4 @@
-TODO
-====
+## TODO
 
   * better stopping-criterion (theoretical maximum entropy vs. measured one)
   * better most-freq-model

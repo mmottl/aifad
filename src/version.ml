@@ -23,4 +23,4 @@
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 *)
 
-let version = "2.0.8"
+let version = "%%VERSION_NUM%%"
