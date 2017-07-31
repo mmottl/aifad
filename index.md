@@ -1,10 +1,6 @@
-AIFAD - Automated Induction of Functions over Algebraic Data Types
-==================================================================
+## AIFAD - Automated Induction of Functions over Algebraic Data Types
 
----------------------------------------------------------------------------
-
-What is AIFAD?
---------------
+### What is AIFAD?
 
 AIFAD stands for _Automated Induction of Functions over Algebraic Data Types_
 and is an application written in [OCaml](http://www.ocaml.org) that improves
@@ -12,8 +8,7 @@ decision tree learning by supporting significantly more complex kinds of data.
 This allows users to more conveniently describe the data they want to learn
 functions on and can improve the accuracy and complexity of resulting models.
 
-Features
---------
+### Features
 
   * Handles multi-valued attributes.  This has already become widespread among
     decision tree learners, but some implementations still only support
@@ -52,7 +47,7 @@ algebraic data types as used in AIFAD.  Furthermore, all kinds of algorithms
 that operate on "normal" decision trees (e.g. pruning algorithms) should be
 generalizable to the more expressive representation.
 
-### Missing Features
+#### Missing Features
 
 * Cannot (yet) handle numerical values.  Users can work around this by
   preprocessing numeric data to cast it into discrete domains.  Since AIFAD
@@ -66,12 +61,9 @@ generalizable to the more expressive representation.
 
 * Cannot (yet) learn recursive functions.
 
----------------------------------------------------------------------------
+### Using AIFAD
 
-Using AIFAD
------------
-
-### Specification of Algebraic Data Types
+#### Specification of Algebraic Data Types
 
 Before AIFAD can learn from data, you will have to tell it what your data
 looks like.  This requires creating a file with the extension `.ads`
@@ -135,7 +127,7 @@ largest set of type equations that is still reasonable.  AIFAD currently does
 not yet provide good error messages to help users improve their specifications,
 but for most applications this should not be much of a concern.
 
-#### Lexical conventions[^lexical]
+##### Lexical conventions[^lexical]
 
 The following characters are considered blanks: space, newline, horizontal
 tabulation, carriage return, line feed and form feed.  Blanks are ignored,
@@ -157,7 +149,7 @@ Type names are identifiers, but start with either a lowercase character or
 an underscore \_.  Data constructors are identifiers, but always start with
 uppercase characters.  The only keywords are `domain` and `codomain`.
 
-#### Syntax
+##### Syntax
 
 Here is the EBNF-grammar of type definitions, of which you can have almost
 arbitrarily many in your specification:
@@ -175,7 +167,7 @@ each right-hand side, but may be reused in other definitions.  You will have
 to name one of your types `domain`, which defines the shape of your input
 data, and another type `codomain` to indicate the form of your output data.
 
-### Data Files
+#### Data Files
 
 Data files take the extension `.add`.  Here is an example for a data file
 used for learning models (file `examples/test.add` in the distribution):
@@ -204,7 +196,7 @@ There are three kinds of data files:
 Depending on the operation you want to perform, one or several of the above
 formats are valid.
 
-#### Syntax
+##### Syntax
 
 Here is the EBNF-grammar of samples as used in data files containing mappings
 from input to output values:
@@ -222,7 +214,7 @@ product-value ::= '(' data { ',' data }+ ')'
 Files that contain only input or output data do not contain `samples` but
 `data` followed by a dot.
 
-### C4.5-compatible Data
+#### C4.5-compatible Data
 
 AIFAD can handle data in C4.5-format.  Data specifications of this kind
 are stored in files having the extension `.names` and related data in files
@@ -244,7 +236,7 @@ linewise, which must match the order and contents of the attributes
 specified in the corresponding `.names`-file.  The class values are
 contained in the last column of these comma-separated lists.
 
-### Learning from Data
+#### Learning from Data
 
 Using AIFAD on the command-line, the learning mode is turned on by the
 flag `-learn`.  In this case you will also have to provide a name for the
@@ -260,7 +252,7 @@ specification of the data.  This can be done in two ways:
      `foo.names` and `foo.data` respectively.  C4.5 mode can be indicated
      with the flag `-c45` on the command-line.
 
-#### Examples
+##### Examples
 
 The following command learns standard AIFAD data, the specification being
 in file `foo.ads` while the data is being read via `stdin` from file `bar.add`:
@@ -300,7 +292,7 @@ Note that C4.5-models and ones for standard AIFAD specifications are not
 compatible.  AIFAD makes sure that you do not accidentally apply some model
 to the wrong data.
 
-#### Models
+##### Models
 
 Models are printed directly in the OCaml-language.  They are represented by a
 function `model`, which maps the tuple (or single attribute) of input to the
@@ -323,9 +315,9 @@ machine-readable model, the model will be printed in human-readable form on
 aifad -model mymodel.c45model
 ```
 
-### Learning Parameters
+#### Learning Parameters
 
-#### Variable selection
+##### Variable selection
 
 Currently there is only one hardly different alternative to using the gain
 ratio criterion, namely the one used by Quinlan in C4.5.  This criterion can be
@@ -333,7 +325,7 @@ turned on using the flag `-gain-c45`.  It incorporates an additional constraint
 that selects also on basis of the unscaled gains.  See [^quinlan1986]
 for details.
 
-#### Pre-pruning
+##### Pre-pruning
 
 There is a currently still rather crude but quite effective and efficient
 pre-pruning technique, which is turned on with `-with-min-gr`.  It stops
@@ -341,7 +333,7 @@ growing decision-trees during learning in a branch when the number of bits
 required to select a variable for splitting exceeds the number of bits gained
 by this step.  This effectively sets a minimum gain ratio at each selection.
 
-#### Different entropy measures
+##### Different entropy measures
 
 You can choose `-indep-entropy` when you assume that tuples (including ones
 in substructures) are independent of each other.  This is faster than the
@@ -351,14 +343,14 @@ Choose `-shallow-entropy` if you want to compute the entropy without
 descending into structures.  This is much faster than the default, which
 does so, especially for deeply nested data structures.
 
-#### Most frequent values
+##### Most frequent values
 
 When no more splitting is possible or wanted, the most frequent value has
 to be computed from the available data.  By setting `-indep-most-freq`,
 you can choose to assume independence of tuple elements in the data, the
 default assumes dependence again.
 
-#### Splitting null branches
+##### Splitting null branches
 
 When splitting data depending on some variable, it can happen that one branch
 of the tree does not have any data for further learning (i.e. it is a _null
@@ -379,7 +371,7 @@ At the moment we do not have empirical evidence that this experimental feature
 significantly improves learning, but there is still some experimentation
 left to be done.
 
-#### Random models
+##### Random models
 
 There is an experimental feature which allows you to generate additional
 random models that are constructed such that at each split a variable is
@@ -395,7 +387,7 @@ in complexity: the latter is taken as decision criterion on which model to
 choose (minimum complexity).  This seems quite interesting from an empirical
 point of view, but needs further investigation.
 
-#### Handling missing values in C4.5-data
+##### Handling missing values in C4.5-data
 
 Samples containing missing values in their codomain are ignored.  For input
 data there are four strategies for handling missing values (indicated by
@@ -418,7 +410,7 @@ data there are four strategies for handling missing values (indicated by
      are either `None` if some value is missing in an attribute or `Some
      value` if it is present.  This is the default (`-mv-lift-all`).
 
-#### Factorization of models
+##### Factorization of models
 
 Models are always constructed in such a way that matches are only performed
 when some information (also from substructures) is really needed.  It can,
@@ -429,7 +421,7 @@ factor out common information from subbranches.  You can prohibit this
 feature by passing `-no-factor`.  There is hardly any performance penalty
 for factorization so you will usually be happy with the default.
 
-### Applying Models
+#### Applying Models
 
 If you have a machine-readable model file, you can apply it to input data.
 There is a certain degree of flexibility here: you can apply a model either
@@ -447,7 +439,7 @@ aifad -apply -model mymodel.c45model < input.data -pred prediction.data
 There is no need here to specify the type of model (C4.5), because the latter
 knows what it is.
 
-### Evaluating Results
+#### Evaluating Results
 
 To evaluate the accuracy of some model application, we compare its result
 to reference data.  The file containing the reference data is specified by
@@ -468,14 +460,14 @@ Example application:
 aifad -spec foo.spec -model mymodel.model -eval output.data < input.data
 ```
 
-### Model Complexity
+#### Model Complexity
 
 After learning, the model complexity is printed to `stderr`.  It is a
 dimensionless measure that tells how many bits of input are needed in average
 to produce one bit of output.  Note that this is completely unrelated to
 the accuracy of the model!
 
-### Random Data Generation
+#### Random Data Generation
 
 For testing purposes it is often very helpful to generate random
 data given some specification.  You might want to try this out with
@@ -513,20 +505,15 @@ in a system-dependent way.
 Contact Information and Contributing
 ------------------------------------
 
-Since there are hardly any real world data sets that exploit the advanced
-data representation features provided by AIFAD, I would be very grateful to
-hear about success stories, especially what concerns improved accuracy and
-model complexity over less expressive representations.
+Since there are hardly any real world data sets that exploit the advanced data
+representation features provided by AIFAD, please let us hear about success
+stories, especially what concerns improved accuracy and model complexity over
+less expressive representations.
 
-In the case of bugs, feature requests, contributions and similar, you can
-contact me here: <markus.mottl@gmail.com>
+Please submit bugs reports, feature requests, contributions and similar to
+the [GitHub issue tracker](https://github.com/mmottl/aifad/issues).
 
-Up-to-date information concerning this tool should be available at:
-<http://mmottl.github.io/aifad>
-
-Enjoy!
-
-Markus Mottl in Rutherford, NJ on July 01, 2014
+Up-to-date information is available at: <https://mmottl.github.io/aifad>
 
 [^lexical]: Some equivalent definitions copied from the OCaml-manual.
 
