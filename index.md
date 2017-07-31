@@ -500,10 +500,7 @@ If you want to pass a certain seed to the random number generator, use
 `-rand-init`.  By using `-rand-self-init`, it will be initialized at startup
 in a system-dependent way.
 
----------------------------------------------------------------------------
-
-Contact Information and Contributing
-------------------------------------
+### Contact Information and Contributing
 
 Since there are hardly any real world data sets that exploit the advanced data
 representation features provided by AIFAD, please let us hear about success
