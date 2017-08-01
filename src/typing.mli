@@ -37,7 +37,7 @@ module AlgDtCfgSpec : sig
   val compare_prod : prod -> prod -> int
 end
 
-module MyCfg : Cfg_intf.CFG with module Spec = AlgDtCfgSpec
+module MyCfg : Cfg.Cfg_intf.CFG with module Spec = AlgDtCfgSpec
 
 val calc_pre_ispec_info : (cnstr_name, tp_name) type_defs -> pre_ispec_info
 val cfg_of_pre_ispec_info : pre_ispec_info -> MyCfg.grammar
