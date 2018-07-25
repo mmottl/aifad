@@ -1,0 +1,8 @@
+(executable
+  (name aifad)
+  (public_name aifad)
+  (libraries threads res pcre cfg)
+)
+
+(ocamllex algdt_lexer)
+(ocamlyacc algdt_parser_y)
