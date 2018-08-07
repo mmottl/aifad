@@ -1,5 +1,4 @@
 (executable
-  (name aifad)
   (public_name aifad)
   (libraries threads res pcre cfg)
 )
