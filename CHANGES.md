@@ -1,3 +1,8 @@
+### ?.?.? (????-??-??)
+
+  * Switched to OPAM file generation via `dune-project`
+
+
 ### 2.2.2 (2018-10-24)
 
   * Updated to OPAM 2.0
