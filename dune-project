@@ -1,10 +1,10 @@
-(lang dune 1.10)
+(lang dune 2.7)
 (name aifad)
 
 (generate_opam_files true)
 
 (source (github mmottl/aifad))
-(license "LGPL-2.1+ with OCaml linking exception")
+(license "LGPL-2.1-or-later with OCaml-LGPL-linking-exception")
 (homepage "https://mmottl.github.io/aifad")
 (documentation "https://mmottl.github.io/aifad/api")
 
@@ -19,7 +19,6 @@ AIFAD is a machine learning tool that generalizes decision tree learning to
 algebraic datatypes.")
   (depends
     (ocaml (>= 4.04))
-    (dune (>= 1.10))
     res
     pcre
     (cfg (>= 2.1))

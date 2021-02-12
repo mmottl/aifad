@@ -1,6 +1,7 @@
 (executable
   (public_name aifad)
   (libraries threads res pcre cfg)
+  (modes byte exe)
 )
 
 (ocamllex algdt_lexer)
