@@ -1,5 +1,6 @@
 (lang dune 2.7)
 (name aifad)
+(using menhir 2.1)
 
 (generate_opam_files true)
 
@@ -19,6 +20,7 @@ AIFAD is a machine learning tool that generalizes decision tree learning to
 algebraic datatypes.")
   (depends
     (ocaml (>= 4.04))
+    menhir
     res
     pcre
     (cfg (>= 2.1))

@@ -5,4 +5,4 @@
 )
 
 (ocamllex algdt_lexer)
-(ocamlyacc algdt_parser_y)
+(menhir (modules algdt_parser_y))
