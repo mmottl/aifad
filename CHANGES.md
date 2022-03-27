@@ -1,6 +1,8 @@
-### ?.?.? (????-??-??)
+### 2.3.0 (2022-03-27)
 
   * Switched to OPAM file generation via `dune-project`
+
+  * Switched to Menhir for parser generation
 
 
 ### 2.2.2 (2018-10-24)
