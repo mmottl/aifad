@@ -1,3 +1,8 @@
+### ?.?.? (????-??-??)
+
+  * Added missing Menhir version constraint
+
+
 ### 2.3.0 (2022-03-27)
 
   * Switched to OPAM file generation via `dune-project`

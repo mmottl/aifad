@@ -20,7 +20,7 @@ AIFAD is a machine learning tool that generalizes decision tree learning to
 algebraic datatypes.")
   (depends
     (ocaml (>= 4.04))
-    menhir
+    (menhir (>= "20180523"))
     res
     pcre
     (cfg (>= 2.1))
