@@ -5,7 +5,7 @@
 (generate_opam_files true)
 
 (source (github mmottl/aifad))
-(license "LGPL-2.1-or-later with OCaml-LGPL-linking-exception")
+(license "LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception")
 (homepage "https://mmottl.github.io/aifad")
 (documentation "https://mmottl.github.io/aifad/api")
 
