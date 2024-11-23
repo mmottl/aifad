@@ -1,12 +1,7 @@
-(*
-   AIFAD - Automated Induction of Functions over Algebraic Datatypes
+(* AIFAD - Automated Induction of Functions over Algebraic Datatypes
 
-   Author: Markus Mottl
-   email:  markus.mottl@gmail.com
-   WWW:    http://www.ocaml.info
-
-   Copyright (C) 2002  Austrian Research Institute for Artificial Intelligence
-   Copyright (C) 2003- Markus Mottl
+   Copyright © 2002 Austrian Research Institute for Artificial Intelligence
+   Copyright © 2003- Markus Mottl <markus.mottl@gmail.com>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
@@ -20,8 +15,7 @@
 
    You should have received a copy of the GNU Lesser General Public License
    along with this library; if not, write to the Free Software Foundation,
-   Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-*)
+   Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA *)
 
 {
 open Lexing

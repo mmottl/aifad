@@ -1,27 +1,21 @@
-(*
-   AIFAD - Automated Induction of Functions over Algebraic Datatypes
+(* AIFAD - Automated Induction of Functions over Algebraic Datatypes
 
-   Author: Markus Mottl
-   email:  markus.mottl@gmail.com
-   WWW:    http://www.ocaml.info
+   Copyright © 2002 Austrian Research Institute for Artificial Intelligence
+   Copyright © 2003- Markus Mottl <markus.mottl@gmail.com>
 
-   Copyright (C) 2002  Austrian Research Institute for Artificial Intelligence
-   Copyright (C) 2003- Markus Mottl
+   This library is free software; you can redistribute it and/or modify it under
+   the terms of the GNU Lesser General Public License as published by the Free
+   Software Foundation; either version 2.1 of the License, or (at your option)
+   any later version.
 
-   This library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   This library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
+   This library is distributed in the hope that it will be useful, but WITHOUT
+   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+   FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+   details.
 
    You should have received a copy of the GNU Lesser General Public License
-   along with this library; if not, write to the Free Software Foundation,
-   Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-*)
+   along with this library; if not, write to the Free Software Foundation, Inc.,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA *)
 
 open Utils
 open Algdt_types
@@ -31,15 +25,9 @@ open Model_utils
 
 (* Factorization of models *)
 
-type factor =
-  | FactorNone
-  | FactorVal of model
-  | FactorLet of models * var_mods
+type factor = FactorNone | FactorVal of model | FactorLet of models * var_mods
 
-let not_match_mod = function
-  | MatchMod _ -> false
-  | Val _ | Let _ -> true
-
+let not_match_mod = function MatchMod _ -> false | Val _ | Let _ -> true
 let make_var_free fdsum = VarFree fdsum
 
 let get_n_tpl models =
@@ -50,29 +38,33 @@ let get_n_tpl models =
 
 let get_cnstr_strct models tpl_ix subs_ar =
   match models.(0) with
-  | Val fdsums ->
-      (match fdsums.(tpl_ix) with
-      | FDAtom cnstr -> cnstr, false
+  | Val fdsums -> (
+      match fdsums.(tpl_ix) with
+      | FDAtom cnstr -> (cnstr, false)
       | FDStrct (cnstr, subs) ->
           subs_ar.(0) <- Array.map make_var_free subs;
-          cnstr, true)
-  | Let (_, var_mods) ->
-      (match var_mods.(tpl_ix) with
-      | VarStrct (cnstr, subs) -> subs_ar.(0) <- subs; cnstr, true
-      | VarFree (FDAtom cnstr) -> cnstr, false
+          (cnstr, true))
+  | Let (_, var_mods) -> (
+      match var_mods.(tpl_ix) with
+      | VarStrct (cnstr, subs) ->
+          subs_ar.(0) <- subs;
+          (cnstr, true)
+      | VarFree (FDAtom cnstr) -> (cnstr, false)
       | VarFree (FDStrct (cnstr, subs)) ->
           subs_ar.(0) <- Array.map make_var_free subs;
-          cnstr, true
+          (cnstr, true)
       | Var -> raise Exit)
   | MatchMod _ -> assert false (* impossible *)
 
 let get_sub_cnstr_strct subs_ar tsubs =
   match tsubs.(0) with
-  | VarStrct (cnstr, subs) -> subs_ar.(0) <- subs; cnstr, true
-  | VarFree (FDAtom cnstr) -> cnstr, false
+  | VarStrct (cnstr, subs) ->
+      subs_ar.(0) <- subs;
+      (cnstr, true)
+  | VarFree (FDAtom cnstr) -> (cnstr, false)
   | VarFree (FDStrct (cnstr, subs)) ->
       subs_ar.(0) <- Array.map make_var_free subs;
-      cnstr, true
+      (cnstr, true)
   | Var -> raise Exit
 
 let cpy_subs subs_ar model_ix last_cnstr = function
@@ -98,13 +90,14 @@ let rec factorize_subs n_models_1 same_ref n_sub_same_ref subs_ar last_cnstr =
           for model_ix = 1 to n_models_1 do
             cpy_subs subs_ar model_ix last_sub_cnstr tsub.(model_ix)
           done;
-          factorize_subs
-            n_models_1 same_ref n_sub_same_ref subs_ar last_sub_cnstr)
-      else (
-        for model_ix = 1 to n_models_1 do
-          chk_atom last_sub_cnstr tsub.(model_ix)
-        done;
-        VarFree (FDAtom last_sub_cnstr)) in
+          factorize_subs n_models_1 same_ref n_sub_same_ref subs_ar
+            last_sub_cnstr)
+        else (
+          for model_ix = 1 to n_models_1 do
+            chk_atom last_sub_cnstr tsub.(model_ix)
+          done;
+          VarFree (FDAtom last_sub_cnstr))
+      in
       factorized_subs.(ix) <- factorized
     with Exit ->
       same_ref := Right tsub :: !same_ref;
@@ -129,8 +122,8 @@ let factorize_no_match models =
         if is_strct then (
           for model_ix = 1 to n_models_1 do
             match models.(model_ix) with
-            | Val fdsums ->
-                (match fdsums.(tpl_ix) with
+            | Val fdsums -> (
+                match fdsums.(tpl_ix) with
                 | FDStrct (cnstr, subs) when cnstr = last_cnstr ->
                     subs_ar.(model_ix) <- Array.map make_var_free subs
                 | FDAtom _ | FDStrct _ -> raise Exit)
@@ -147,7 +140,8 @@ let factorize_no_match models =
             | Let (_, var_mods) -> chk_atom last_cnstr var_mods.(tpl_ix)
             | MatchMod _ -> assert false (* impossible *)
           done;
-          VarFree (FDAtom last_cnstr)) in
+          VarFree (FDAtom last_cnstr))
+      in
       factorized_ref := factorized :: !factorized_ref;
       incr n_factorized_ref
     with Exit ->
@@ -161,7 +155,8 @@ let factorize_no_match models =
     let n_sub_same = !n_sub_same_ref in
     if n_factorized = n_tpl && n_sub_same = 0 then
       let fdsums =
-        array_map_of_nlist sum_of_var_mod n_factorized !factorized_ref in
+        array_map_of_nlist sum_of_var_mod n_factorized !factorized_ref
+      in
       FactorVal (Val fdsums)
     else
       let same = !same_ref in
@@ -172,21 +167,24 @@ let factorize_no_match models =
             let new_fdsums = Array.make n_new_tpl dummy_fdsum in
             let acti ix = function
               | Left tpl_ix -> new_fdsums.(ix) <- fdsums.(tpl_ix)
-              | Right tsub ->
+              | Right tsub -> (
                   match tsub.(model_ix) with
                   | VarFree fdsum -> new_fdsums.(ix) <- fdsum
-                  | VarStrct _ | Var -> assert false (* impossible *) in
+                  | VarStrct _ | Var -> assert false (* impossible *))
+            in
             List.iteri acti same;
             Val new_fdsums
         | Let (match_mod, var_mods) ->
             let new_var_mods = Array.make n_new_tpl Var in
             let acti ix = function
               | Left tpl_ix -> new_var_mods.(ix) <- var_mods.(tpl_ix)
-              | Right tsub -> new_var_mods.(ix) <- tsub.(model_ix) in
+              | Right tsub -> new_var_mods.(ix) <- tsub.(model_ix)
+            in
             List.iteri acti same;
             if array_forall is_var new_var_mods then MatchMod match_mod
             else Let (match_mod, new_var_mods)
-        | MatchMod _ -> assert false (* impossible *) in
+        | MatchMod _ -> assert false (* impossible *)
+      in
       let new_models = Array.mapi cnvi models in
       let n_new_var_mods = n_factorized + n_vars in
       FactorLet (new_models, array_of_nlist n_new_var_mods !factorized_ref)

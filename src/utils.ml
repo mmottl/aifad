@@ -1,44 +1,44 @@
-(*
-   AIFAD - Automated Induction of Functions over Algebraic Datatypes
+(* AIFAD - Automated Induction of Functions over Algebraic Datatypes
 
-   Author: Markus Mottl
-   email:  markus.mottl@gmail.com
-   WWW:    http://www.ocaml.info
+   Copyright © 2002 Austrian Research Institute for Artificial Intelligence
+   Copyright © 2003- Markus Mottl <markus.mottl@gmail.com>
 
-   Copyright (C) 2002  Austrian Research Institute for Artificial Intelligence
-   Copyright (C) 2003- Markus Mottl
+   This library is free software; you can redistribute it and/or modify it under
+   the terms of the GNU Lesser General Public License as published by the Free
+   Software Foundation; either version 2.1 of the License, or (at your option)
+   any later version.
 
-   This library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   This library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
+   This library is distributed in the hope that it will be useful, but WITHOUT
+   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+   FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+   details.
 
    You should have received a copy of the GNU Lesser General Public License
-   along with this library; if not, write to the Free Software Foundation,
-   Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-*)
+   along with this library; if not, write to the Free Software Foundation, Inc.,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA *)
 
 (* Integer sets and maps *)
 
-module IntSet = Set.Make (struct type t = int let compare = compare end)
-module IntMap = Map.Make (struct type t = int let compare = compare end)
+module IntSet = Set.Make (struct
+  type t = int
 
+  let compare = compare
+end)
+
+module IntMap = Map.Make (struct
+  type t = int
+
+  let compare = compare
+end)
 
 (* Option functions *)
 
 let unlift_opt = function Some x -> x | None -> failwith "unlift_opt"
 let unlift_opts opts = Array.map unlift_opt opts
 
-
 (* Either *)
 
 type ('a, 'b) either = Left of 'a | Right of 'b
-
 
 (* One_list *)
 
@@ -56,7 +56,6 @@ let rec one_list_fold_left f acc = function
   | OneEl el -> f acc el
   | OneCons (el, one_lst) -> one_list_fold_left f (f acc el) one_lst
 
-
 (* List functions *)
 
 let rec list_fold_lefti_loop f ix acc = function
@@ -72,11 +71,10 @@ let list_to_rev_array n = function
       let rec loop ix = function
         | h :: t ->
             Array.unsafe_set ar ix h;
-            if ix >= 0 then loop (ix - 1) t
-            else ar
-        | [] -> assert false in
+            if ix >= 0 then loop (ix - 1) t else ar
+        | [] -> assert false
+      in
       loop (n - 1) t
-
 
 (* Array functions *)
 
@@ -110,7 +108,9 @@ let array_map_of_nlist f n = function
 
 let rec array_of_rev_list_loop ar ix = function
   | [] -> ar
-  | h :: t -> Array.unsafe_set ar ix h; array_of_rev_list_loop ar (ix - 1) t
+  | h :: t ->
+      Array.unsafe_set ar ix h;
+      array_of_rev_list_loop ar (ix - 1) t
 
 let array_of_rev_list = function
   | [] -> [||]
@@ -153,38 +153,40 @@ let array_map_to_list f ar =
   array_rev_fold_left coll [] ar
 
 let array_rev_iter f ar =
-  for i = Array.length ar - 1 downto 0 do f (Array.unsafe_get ar i) done
+  for i = Array.length ar - 1 downto 0 do
+    f (Array.unsafe_get ar i)
+  done
 
 let array_map2 f ar =
   let len = Array.length ar in
-  if len = 0 then [||], [||]
-  else (
+  if len = 0 then ([||], [||])
+  else
     let a, b = f (Array.unsafe_get ar 0) in
     let res1 = Array.make len a in
     let res2 = Array.make len b in
     for i = 1 to len - 1 do
       let a, b = f (Array.unsafe_get ar i) in
       Array.unsafe_set res1 i a;
-      Array.unsafe_set res2 i b;
+      Array.unsafe_set res2 i b
     done;
-    res1, res2)
+    (res1, res2)
 
 let array_mapi2 f ar =
   let len = Array.length ar in
-  if len = 0 then [||], [||]
-  else (
+  if len = 0 then ([||], [||])
+  else
     let a, b = f 0 (Array.unsafe_get ar 0) in
     let res1 = Array.make len a in
     let res2 = Array.make len b in
     for i = 1 to len - 1 do
       let a, b = f i (Array.unsafe_get ar i) in
       Array.unsafe_set res1 i a;
-      Array.unsafe_set res2 i b;
+      Array.unsafe_set res2 i b
     done;
-    res1, res2)
+    (res1, res2)
 
 let rec array_forall_loop ix len p ar =
-  ix = len || p (Array.unsafe_get ar ix) && array_forall_loop (ix + 1) len p ar
+  ix = len || (p (Array.unsafe_get ar ix) && array_forall_loop (ix + 1) len p ar)
 
 let array_forall p ar = array_forall_loop 0 (Array.length ar) p ar
 
@@ -193,7 +195,9 @@ let array_filter p ar =
   let cnt_ref = ref 0 in
   for i = 0 to Array.length ar - 1 do
     let el = Array.unsafe_get ar i in
-    if p el then (incr cnt_ref; els_ref := el :: !els_ref)
+    if p el then (
+      incr cnt_ref;
+      els_ref := el :: !els_ref)
   done;
   let cnt = !cnt_ref in
   if cnt = 0 then [||]
@@ -205,7 +209,9 @@ let array_filter p ar =
     | [] -> assert false
 
 let array_iter1 f ar =
-  for i = 1 to Array.length ar - 1 do f (Array.unsafe_get ar i) done
+  for i = 1 to Array.length ar - 1 do
+    f (Array.unsafe_get ar i)
+  done
 
 let rec array_fold_left_loop ix len f acc ar =
   if ix = len then acc
@@ -251,7 +257,7 @@ let transpose_matrix m =
     let m0 = Array.unsafe_get m 0 in
     let s = Array.length m0 in
     if s = 0 then Array.make s [||]
-    else (
+    else
       let m00 = Array.unsafe_get m0 0 in
       let new_m = Array.make_matrix s z m00 in
       let z_1 = z - 1 in
@@ -261,19 +267,22 @@ let transpose_matrix m =
           Array.unsafe_set ar j (Array.unsafe_get (Array.unsafe_get m j) i)
         done
       done;
-      new_m)
-
+      new_m
 
 (* Miscellaneous functions *)
 
 let id x = x
-
 let cmp_fst (x1, _) (x2, _) = compare x1 x2
 let cmp_snd (_, y1) (_, y2) = compare y1 y2
-let make_pair a b = a, b
+let make_pair a b = (a, b)
 
 let unwind_protect f fx f_exit fx_exit =
-  let res = try f fx with exc -> f_exit fx_exit; raise exc in
+  let res =
+    try f fx
+    with exc ->
+      f_exit fx_exit;
+      raise exc
+  in
   f_exit fx_exit;
   res
 

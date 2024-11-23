@@ -1,27 +1,21 @@
-(*
-   AIFAD - Automated Induction of Functions over Algebraic Datatypes
+(* AIFAD - Automated Induction of Functions over Algebraic Datatypes
 
-   Author: Markus Mottl
-   email:  markus.mottl@gmail.com
-   WWW:    http://www.ocaml.info
+   Copyright © 2002 Austrian Research Institute for Artificial Intelligence
+   Copyright © 2003- Markus Mottl <markus.mottl@gmail.com>
 
-   Copyright (C) 2002  Austrian Research Institute for Artificial Intelligence
-   Copyright (C) 2003- Markus Mottl
+   This library is free software; you can redistribute it and/or modify it under
+   the terms of the GNU Lesser General Public License as published by the Free
+   Software Foundation; either version 2.1 of the License, or (at your option)
+   any later version.
 
-   This library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   This library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
+   This library is distributed in the hope that it will be useful, but WITHOUT
+   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+   FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+   details.
 
    You should have received a copy of the GNU Lesser General Public License
-   along with this library; if not, write to the Free Software Foundation,
-   Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-*)
+   along with this library; if not, write to the Free Software Foundation, Inc.,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA *)
 
 open Utils
 open Algdt_types
@@ -39,7 +33,7 @@ let rec destr_vars_entropy ix histos var_samples ofs len =
       if histo_is_redundant histo len then 0.0 else calc_entropy histo len
     else if histo_is_redundant histo len then
       destr_vars_entropy (ix - 1) histos var_samples ofs len
-    else (
+    else
       let init_e = calc_entropy histo len in
       let make_histo ix = Array.make (Array.length histos.(ix)) 0 in
       let next_len = Array.length histos - 1 in
@@ -47,9 +41,12 @@ let rec destr_vars_entropy ix histos var_samples ofs len =
       let n_cnstrs = Array.length histo in
       let many_new_histos = Array.init n_cnstrs make_new_histos in
       let offsets = Array.make n_cnstrs 0 in
-      ignore (
-        array_fold_lefti (fun i n freq ->
-          offsets.(i) <- ofs + n; n + freq) 0 histo);
+      ignore
+        (array_fold_lefti
+           (fun i n freq ->
+             offsets.(i) <- ofs + n;
+             n + freq)
+           0 histo);
       let last_cnstr = n_cnstrs - 1 in
       let samples = var_samples.(ix) in
       let f_len = float len in
@@ -59,16 +56,20 @@ let rec destr_vars_entropy ix histos var_samples ofs len =
             let freq = histo.(cur_cnstr) in
             let split_e =
               let new_ofs = offsets.(cur_cnstr) - freq in
-              destr_vars_entropy
-                (ix - 1) many_new_histos.(cur_cnstr) var_samples new_ofs freq in
-            e +. float freq /. f_len *. split_e in
+              destr_vars_entropy (ix - 1)
+                many_new_histos.(cur_cnstr)
+                var_samples new_ofs freq
+            in
+            e +. (float freq /. f_len *. split_e)
+          in
           if cur_cnstr = last_cnstr then new_e
           else
             let next_cnstr = cur_cnstr + 1 in
             let next_cnt =
-              histo.(next_cnstr) - offsets.(next_cnstr) + offsets.(cur_cnstr) in
+              histo.(next_cnstr) - offsets.(next_cnstr) + offsets.(cur_cnstr)
+            in
             loop new_e next_cnstr next_cnt
-        else (
+        else
           let sample_ix = offsets.(cur_cnstr) in
           let sample = samples.(sample_ix) in
           let cnstr = fdsum_cnstr sample in
@@ -95,11 +96,11 @@ let rec destr_vars_entropy ix histos var_samples ofs len =
               let dst_cnstr = fdsum_cnstr dst_sample in
               new_histo.(dst_cnstr) <- new_histo.(dst_cnstr) + 1
             done;
-            loop e cur_cnstr cnt)) in
-      loop init_e 0 histo.(0))
+            loop e cur_cnstr cnt)
+      in
+      loop init_e 0 histo.(0)
 
 let var_entropy _ var = calc_entropy var.histo (Array.length var.samples)
-
 let copy_samples_of_var var = Array.copy var.samples
 let copy_histo_of_var var = Array.copy var.histo
 
