@@ -38,7 +38,8 @@ val pp_type_def : formatter -> (tp_name, cnstr_name) type_def -> unit
 (** [pp_type_def ppf type_def] pretty-print [type_def] using formatter [ppf]. *)
 
 val pp_type_defs : formatter -> (tp_name, cnstr_name) type_defs -> unit
-(** [pp_type_defs ppf type_defs] pretty-print [type_defs] using formatter [ppf]. *)
+(** [pp_type_defs ppf type_defs] pretty-print [type_defs] using formatter [ppf].
+*)
 
 (** {6 Data pretty-printer} *)
 
@@ -61,7 +62,8 @@ module type DATA_PP = sig
       formatter [ppf]. *)
 
   val pp_prod_els : formatter -> tag dsum prod_els -> unit
-  (** [pp_prod_els ppf prod_els] pretty-print [prod_els] using formatter [ppf]. *)
+  (** [pp_prod_els ppf prod_els] pretty-print [prod_els] using formatter [ppf].
+  *)
 end
 
 module Data : sig

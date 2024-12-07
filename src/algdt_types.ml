@@ -58,7 +58,8 @@ type fspec = tps array array
 type fdsum = FDAtom of cnstr | FDStrct of cnstr * fdsums
 and fdsums = fdsum array
 
-(** {6 Useful abbreviations for internal representation of data specifications} *)
+(** {6 Useful abbreviations for internal representation of data specifications}
+*)
 
 type tp_name = string
 type tp_tbl = tp_name array

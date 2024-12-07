@@ -25,23 +25,29 @@ open Algdt_types
 (** {6 Parser for data specifications} *)
 
 val spec : lexbuf -> (tp_name, cnstr_name) type_defs
-(** [spec lexbuf] reads a data specification from [lexbuf]. @return type
-    definitions in specification. *)
+(** [spec lexbuf] reads a data specification from [lexbuf].
+
+    @return type definitions in specification. *)
 
 (** {6 Data parser} *)
 
 val data : lexbuf -> cnstr_name data option
-(** [data lexbuf] reads data from [lexbuf].  Data samples will not be
-    accepted.  @return [Some data], or [None] on [EOF]. *)
+(** [data lexbuf] reads data from [lexbuf]. Data samples will not be accepted.
+
+    @return [Some data], or [None] on [EOF]. *)
 
 val data_sample : lexbuf -> cnstr_name data_sample option
-(** [data_sample lexbuf] reads data samples (left- and right hand sides)
-    from [lexbuf].  @return [Some (lhs, rhs))], or [None] on [EOF]. *)
+(** [data_sample lexbuf] reads data samples (left- and right hand sides) from
+    [lexbuf].
+
+    @return [Some (lhs, rhs))], or [None] on [EOF]. *)
 
 val lhs_data : lexbuf -> cnstr_name data option
-(** [lhs_data lexbuf] reads data and data samples from [lexbuf].  @return
-    [Some data] or [Some lhs] of data samples, or [None] on [EOF]. *)
+(** [lhs_data lexbuf] reads data and data samples from [lexbuf].
+
+    @return [Some data] or [Some lhs] of data samples, or [None] on [EOF]. *)
 
 val rhs_data : lexbuf -> cnstr_name data option
-(** [rhs_data lexbuf] reads data and data samples from [lexbuf].  @return
-    [Some data] or [Some rhs] of data samples, or [None] on [EOF]. *)
+(** [rhs_data lexbuf] reads data and data samples from [lexbuf].
+
+    @return [Some data] or [Some rhs] of data samples, or [None] on [EOF]. *)

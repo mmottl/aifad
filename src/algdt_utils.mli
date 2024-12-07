@@ -54,16 +54,23 @@ val empty_fspec : fspec
 (** TODO *)
 
 val get_n_fdsums : ispec -> fspec -> int
-(** [get_n_fdsums ispec fspec] @return number of variables (= elements of
-    topmost flattened product) derived from [fspec] given [ispec]. *)
+(** [get_n_fdsums ispec fspec]
+
+    @return
+      number of variables (= elements of topmost flattened product) derived from
+      [fspec] given [ispec]. *)
 
 val get_init_tps : ispec -> fspec -> tps
-(** [get_init_tps fspec ispec] @return initial types of variables (=
-    elements of topmost flattened product) derived from [fspec] given
-    [ispec]. *)
+(** [get_init_tps fspec ispec]
+
+    @return
+      initial types of variables (= elements of topmost flattened product)
+      derived from [fspec] given [ispec]. *)
 
 val fdsum_cnstr : fdsum -> cnstr
-(** [fdsum_cnstr fdsum] @return constructor tag of [fdsum]. *)
+(** [fdsum_cnstr fdsum]
+
+    @return constructor tag of [fdsum]. *)
 
 val histo_is_redundant : histo -> int -> bool
 (** [histo_is_redundant histo n_samples] checks whether histogram [histo]
@@ -71,25 +78,35 @@ val histo_is_redundant : histo -> int -> bool
     counted in [histo]! *)
 
 val many_fdsums_of_vars : vars -> fdsums array
-(** [many_fdsums_of_vars vars] @return data elements in [vars] row-wise. *)
+(** [many_fdsums_of_vars vars]
+
+    @return data elements in [vars] row-wise. *)
 
 val make_deco_dsum_cnv :
   fspec ->
   ispec ->
   (tp -> fdsum -> (tp * cnstr) dsum)
   * (tp prod_els -> fdsums -> (tp * cnstr) dsum prod_els)
-(** [make_deco_dsum_cnv fspec ispec] @return the tuple of functions
-    [(cnv_fdsum, cnv_many_prod_els)], which convert from undecorated,
-    flattened data to decorated (= type annotated), unflattened data. *)
+(** [make_deco_dsum_cnv fspec ispec]
+
+    @return
+      the tuple of functions [(cnv_fdsum, cnv_many_prod_els)], which convert
+      from undecorated, flattened data to decorated (= type annotated),
+      unflattened data. *)
 
 val calc_cntg_tbls : var -> vars -> cntg_tbls
-(** [calc_cntg_tbls dvar cvars] @return contingency table for each
-    split of [cvars] on [dvar] as array of contingency tables. *)
+(** [calc_cntg_tbls dvar cvars]
+
+    @return
+      contingency table for each split of [cvars] on [dvar] as array of
+      contingency tables. *)
 
 val make_vars : fspec -> tps -> samples array -> vars
-(** [make_vars fspec init_tps many_samples] @return variables with each
-    containing the samples from the corresponding element in
-    [many_samples]. *)
+(** [make_vars fspec init_tps many_samples]
+
+    @return
+      variables with each containing the samples from the corresponding element
+      in [many_samples]. *)
 
 val split_vars : var -> fspec -> vars -> vars array
 (** [split_vars dvar cfspec cvars] split [cvars] on [dvar] given [cfspec]. *)
@@ -102,11 +119,10 @@ val split_with_sub_vars : int -> fspec -> vars -> int -> vars array
 
 val split_cnstr_with_sub_vars : fspec -> vars -> int -> cnstr -> vars * vars
 (** [split_cnstr_with_sub_vars fspec vars var_ix cnstr] splits [vars] the
-    variable denoted by [var_ix] into two variable sets
-    [(cnstr_vars,
-    others)], where [cnstr_vars] contains the variables with
-    samples where [cnstr] matched, including possible subvariables, and [others]
-    contains the other cases. (left, X (x, y), right) -> (left, x, y, right) *)
+    variable denoted by [var_ix] into two variable sets [(cnstr_vars, others)],
+    where [cnstr_vars] contains the variables with samples where [cnstr]
+    matched, including possible subvariables, and [others] contains the other
+    cases. (left, X (x, y), right) -> (left, x, y, right) *)
 
 val shave_with_sub_vars : fspec -> vars -> int -> cnstr -> vars
 (** [shave_with_sub_vars fspec vars var_ix cnstr] shaves variable with a given
