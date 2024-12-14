@@ -1,3 +1,5 @@
+# Changelog
+
 ## 2.3.1 (2024-11-23)
 
 - Reformatted everything with ocamlformat
