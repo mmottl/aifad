@@ -1,8 +1,8 @@
-# To-do
+# TODO
 
-- better stopping-criterion (theoretical maximum entropy vs. measured one)
-- better most-freq-model
-- reduced error pruning
-- abstraction of model construction
-- error messages (type specifications)
-- CPS for null-splits
+- [ ] Better stopping-criterion (theoretical maximum vs measured entropy)
+- [ ] Better most-freq-model
+- [ ] Reduced error pruning
+- [ ] Abstraction of model construction
+- [ ] Error messages (type specifications)
+- [ ] CPS for null-splits
