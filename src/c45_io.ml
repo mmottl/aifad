@@ -18,7 +18,7 @@
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA *)
 
 open Printf
-open Pcre
+open Pcre2
 open Utils
 open Algdt_types
 open Algdt_utils

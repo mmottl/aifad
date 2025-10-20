@@ -22,7 +22,7 @@ algebraic datatypes.")
     (ocaml (>= 4.04))
     (menhir (>= "20180523"))
     res
-    pcre
+    pcre2
     (cfg (>= 2.1))
   )
 )
