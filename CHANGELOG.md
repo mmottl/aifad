@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.3.2] - 2025-10-19
+
+- Switched from `Pcre` to `Pcre2`.
+- Added pre-commit checks and GitHub workflow.
+
 ## [2.3.1] - 2024-11-23
 
 ### Changed
